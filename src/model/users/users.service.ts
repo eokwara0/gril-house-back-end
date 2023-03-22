@@ -14,15 +14,23 @@ export class UsersService {
 
     }
 
+
+    async findUserById( id : string ) : Promise<User>{
+        return this.userModel.findById(id);
+    }
     /**
      * TODO :: add support for udpating a user 
      */ 
     async updateUser( user : User )  {
-        this.userModel.updateOne( { })
+        this.userModel.findOneAndUpdate()
     }
 
     // getting all the users in the database
-    async findAll() : Promise<User[]>{
-        return this.userModel.find().exec();
+    async findAll( option : object ) : Promise<User[]>{
+        return this.userModel.find(option,).exec();
+    }
+
+    async deleteUserById( id  : string ) : Promise<{ acknowledged : boolean , deletedCount : number }>{
+        return this.userModel.deleteOne({ _id : id }).exec();
     }
 }

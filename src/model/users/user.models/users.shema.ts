@@ -1,7 +1,8 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { IsEmpty, IsString } from "class-validator";
 import mongoose, { HydratedDocument } from "mongoose";
-import { ROLES } from "src/model/Role/roles.enum";
+import { ROLES } from "src/model/misce/roles.enum";
+;
 
 // User Interface 
 export interface IUser{
@@ -20,6 +21,7 @@ export interface IUser{
 // User Interface concrete implementation
 @Schema({
     id : true ,
+    _id : true ,
     minimize : true, 
     versionKey : false,
     timestamps : true,
