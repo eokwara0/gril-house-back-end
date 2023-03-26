@@ -1,5 +1,6 @@
 import { UnauthorizedException } from "@nestjs/common";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { ApiProperty } from "@nestjs/swagger";
 import { IsEmpty, IsString } from "class-validator";
 import mongoose, { HydratedDocument } from "mongoose";
 import { ROLES } from "src/modules/interfaces/roles.enum";
@@ -29,6 +30,9 @@ export interface IUser{
 })
 export class User implements IUser{
 
+    @ApiProperty({
+        description : "User role",
+    })
     @IsString()
     @Prop({
         name : 'ROLE',
@@ -42,6 +46,9 @@ export class User implements IUser{
     })
     role: ROLES;
 
+    @ApiProperty({
+        description : "User Email"
+    })
     @IsString()
     @Prop({
         name : 'EMAIL',
@@ -52,50 +59,31 @@ export class User implements IUser{
     })
     email: string;
 
+    @ApiProperty({ description : 'User Phone Number'})
+    @Prop({name : 'MOBILE NUMBER',type : mongoose.Schema.Types.String,required : false,})
     @IsString()
-    @Prop({
-        name : 'MOBILE NUMBER',
-        type : mongoose.Schema.Types.String,
-        required : false,
-
-    })
     mobile: string;
 
+    @ApiProperty({ description : 'Username'})
+    @Prop({name : 'USERNAME',type : mongoose.Schema.Types.String,required : true,unique : true,})
     @IsString()
-    @Prop({
-        name : 'USERNAME',
-        type : mongoose.Schema.Types.String,
-        required : true,
-        unique : true,
-    })
     username: string;
 
 
+    @ApiProperty({description : 'Lastname'})
+    @Prop({name : 'Lastname',type : mongoose.Schema.Types.String,required : false,index : true,})
     @IsString()
-    @Prop({
-        name : 'Lastname',
-        type : mongoose.Schema.Types.String,
-        required : false,
-        index : true,
-    })
     lastname: string;
 
+    @ApiProperty({description : "password"})
+    @Prop({name : "PASSWORD",type : mongoose.Schema.Types.String,required : false,})
     @IsString()
-    @Prop({
-        name : "PASSWORD",
-        type : mongoose.Schema.Types.String,
-        required : false,
-    })
     password: string;
 
 
+    @ApiProperty({ description : "Firstname"})
+    @Prop({name : "FIRSTNAME",type : mongoose.Schema.Types.String,required : true,index : true })
     @IsString()
-    @Prop({
-        name : "FIRSTNAME",
-        type : mongoose.Schema.Types.String,
-        required : true,
-        index : true 
-    })
     firstname: string;
 
     // constructor
