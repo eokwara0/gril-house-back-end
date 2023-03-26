@@ -1,12 +1,13 @@
+import { UnauthorizedException } from "@nestjs/common";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { IsEmpty, IsString } from "class-validator";
 import mongoose, { HydratedDocument } from "mongoose";
-import { ROLES } from "src/model/misce/roles.enum";
+import { ROLES } from "src/modules/interfaces/roles.enum";
 ;
 
 // User Interface 
 export interface IUser{
-
+    
        role : ROLES;
        email : string ;
        mobile : string ;
@@ -24,7 +25,7 @@ export interface IUser{
     _id : true ,
     minimize : true, 
     versionKey : false,
-    timestamps : true,
+    timestamps : true
 })
 export class User implements IUser{
 
@@ -32,6 +33,10 @@ export class User implements IUser{
     @Prop({
         name : 'ROLE',
         type : mongoose.Schema.Types.String,
+        validate : ( data : string ) => {
+            return Object.values(ROLES).filter(r => r ===data ).length > 0
+        },
+        uppercase : true,
         required : true,
         
     })
@@ -41,7 +46,8 @@ export class User implements IUser{
     @Prop({
         name : 'EMAIL',
         type : mongoose.Schema.Types.String,
-        required : false,
+        unique : true,
+        required : true,
         index : true , 
     })
     email: string;
@@ -59,8 +65,8 @@ export class User implements IUser{
     @Prop({
         name : 'USERNAME',
         type : mongoose.Schema.Types.String,
-        required : false,
-        index : true 
+        required : true,
+        unique : true,
     })
     username: string;
 
