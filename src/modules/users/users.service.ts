@@ -14,13 +14,17 @@ export class UsersService {
 
     }
 
-
+    // find user by id
     async findUserById( id : string ) : Promise<User>{
         return this.userModel.findById(id);
     }
-    /**
-     * TODO :: add support for udpating a user 
-     */ 
+
+    // Find user by username
+    async findByUserName( username : string ) : Promise<any>{
+        return this.userModel.findOne({ username : username }).exec();
+    }
+
+    // TODO ::: add support for updating a user 
     async updateUser( user : User )  {
         this.userModel.findOneAndUpdate()
     }
@@ -30,6 +34,7 @@ export class UsersService {
         return this.userModel.find(option,).exec();
     }
 
+    // delete user from the database
     async deleteUserById( id  : string ) : Promise<{ acknowledged : boolean , deletedCount : number }>{
         return this.userModel.deleteOne({ _id : id }).exec();
     }
