@@ -26,6 +26,7 @@ export class AuthenticationController {
         ROLES.MANAGER
     )
     @UseGuards(JwtAuthGuard,RolesGuard)
+    @Roles()
     @Get('profile')
     getProfile(@Req() req ){
         return req.user;

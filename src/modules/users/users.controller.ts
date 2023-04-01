@@ -11,7 +11,6 @@ import { UsersService } from './users.service';
 @Controller('user')
 @UseGuards(JwtAuthGuard , RolesGuard)
 export class UsersController {
-    //constructor
     constructor( private userService : UsersService ){}
 
     @ApiBearerAuth()
@@ -25,7 +24,7 @@ export class UsersController {
     ))
     @Roles()
     @Get()
-    @ApiQuery( { type : Queries })
+    // @ApiQuery( { type : Queries })
     findAll(@Query() queries : Queries): Promise<User[]>{
         return this.userService.findAll( queries );
     }

@@ -5,26 +5,36 @@ import { IsEmpty, IsNotEmpty, IsObject, IsString } from "class-validator";
 export class Queries  {
 
 
-    @ApiProperty()
+    @ApiProperty({
+        required: false ,
+    })
     @IsString()
     firstname : string ;
 
     @IsString()
-    @ApiProperty()
+    @ApiProperty({
+        required: false,
+    })
     lastname  : string ;
 
     @IsString()
-    @ApiProperty()
+    @ApiProperty({
+        required: false,
+    })
     role : string;
 
 
     @IsString()
-    @ApiProperty()
+    @ApiProperty({
+        required : false,
+    })
     username : string ;
 
 
     @IsString()
-    @ApiProperty()
+    @ApiProperty({
+        required: false,
+    })
     email : string ;;
 
 }
