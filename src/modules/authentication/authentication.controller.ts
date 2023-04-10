@@ -1,38 +1,79 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
-import { ApiBody } from '@nestjs/swagger';
-import { ROLES } from '../interfaces/roles.enum';
-import { User } from '../users/user.models/users.shema';
-import { AuthenticationService } from './authentication.service';
-import { Roles } from './decorators/roles.decorator';
-import { JwtAuthGuard } from './guards/jwt-auth-guard';
-import { LocalAuthGuard } from './guards/local-auth.guard';
-import { RolesGuard } from './guards/roles.guard';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Render,
+  Req,
+  UnauthorizedException,
+  UseGuards,
+  UsePipes,
+  ValidationPipe,
+} from "@nestjs/common";
+import { ROLES } from "../interfaces/roles.enum";
+import { Roles } from "./decorators/roles.decorator";
+import { JwtAuthGuard } from "./guards/jwt.authentication.guard";
+import { LocalAuthGuard } from "./guards/local.authentication.guard";
+import { RolesGuard } from "./guards/roles.guard";
+import { ResetPasswordGuard } from "./guards/reset.password.guard";
+import { AuthenticationService } from "./services/authentication.service";
 
-@Controller('auth')
+@Controller("auth")
 export class AuthenticationController {
+  // AuthenticationController
+  constructor(private readonly authservice: AuthenticationService) {}
 
-    // AuthenticationController
-    constructor( private authservice : AuthenticationService){}
+  // Login endpoint a user has to provide a valid user
+  @HttpCode(HttpStatus.OK)
+  @Post("login")
+  @UseGuards(LocalAuthGuard)
+  async login(
+    @Body(ValidationPipe) signinDto: Record<string, unknown>
+  ): Promise<Record<string, unknown>> {
+    return this.authservice.login(signinDto);
+  }
 
-    // login endpoint a user has to provide a valid user
-    @Post('login')
-    @UseGuards(LocalAuthGuard)
-    async login( @Req() req){
-        return this.authservice.login(req.user);
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @UsePipes(
+    new ValidationPipe({
+      skipMissingProperties: true,
+      skipNullProperties: true,
+      skipUndefinedProperties: true,
+    })
+  )
+
+  // Profile endpoint
+  @Roles()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get("profile")
+  async getProfile(@Req() req): Promise<Record<string, unknown>> {
+    return this.authservice.getUserProfile(req.user._id);
+  }
+
+  @Roles()
+  @Post("forgot/:email")
+  async forgotPassword(
+    @Param("email") email: string
+  ): Promise<Record<string, unknown>> {
+    return this.authservice.sendVerificationEmail(email);
+  }
+
+  @UseGuards(ResetPasswordGuard)
+  @Render("index")
+  @Get("reset/:id")
+  resetPassword(@Param("id") id: string, @Req() req) {
+    if (id === req.user.id) {
+      return {
+        person: { first: "emmanuel", last: "awesome" },
+        message: "Hello World!",
+      };
     }
-
-    @Roles(
-        ROLES.ADMIN, 
-        ROLES.MANAGER
-    )
-    @UseGuards(JwtAuthGuard,RolesGuard)
-    @Roles()
-    @Get('profile')
-    getProfile(@Req() req ){
-        return req.user;
-    }
-
-
-
-
+    throw new UnauthorizedException({
+      message: "You do not have permission to this page.",
+    });
+  }
 }

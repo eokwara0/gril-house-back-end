@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Reset Password</title>
+    <style>
+        body {
+            height: auto;
+        }
+
+        .main-body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .form {
+
+            width: 500px;
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 2px 4px rgb(223, 222, 222);
+        }
+
+        .reset-header {
+            width: 100%;
+            background-color: rgb(206, 70, 70);
+            text-align: center;
+            font-family: 'Ubuntu Mono';
+            color: white;
+        }
+
+        .reset_form {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Ubuntu Mono';
+        }
+
+        .oldpassword,
+        .newpassword {
+            outline: none;
+            border: none;
+            border-radius: 7px;
+            font-size: 17px;
+            text-indent: 20px;
+            height: 50px;
+            border: 2px solid rgb(206, 70, 70);
+            width: 80%;
+            margin-bottom: 20px;
+        }
+
+
+
+
+        #submit {
+            width: fit-content;
+        }
+
+        #submit {
+            outline: none;
+            border: none;
+            width: 40%;
+            height: 50px;
+            font-family: 'Ubuntu Mono';
+            background-color: rgb(206, 70, 70);
+
+            color: white;
+            border-radius: 8px;
+        }
+
+        #submit:hover {
+            background-color: lightskyblue;
+
+        }
+
+        .reset-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50%;
+        }
+
+        .reset-image {
+            object-fit: contain;
+            max-width: 80%;
+        }
+        .message{
+            display: flex;
+            flex-direction: column;
+            font-size: 30px;
+            font-weight: 700;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .message {
+            width: 80%;
+        }
+        .message p{
+            margin: 0;
+        }
+        .message p:last-child{
+            font-size: 1.9em;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="main-body">
+        <div class="form container">
+            <div class="reset-image-container">
+                <img class="reset-image" src="/rocket_fly.jpeg" alt="image">
+            </div>
+            <div class="message">
+                <p>Reset</p>
+                <p>Password</p>
+            </div>
+            <form action="/user/update" class="reset_form" enctype="application/x-www-form-urlencoded">
+                <input class="oldpassword" type="password" id="password" name="password"
+                    placeholder="Y5wjr F4j65wp ^45k9jwp" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+                <input class="newpassword" type="password" id="newpassword" name="newpassword"
+                    placeholder="Y5wjr F4j65wp ^45k9jwp" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+                <input id="submit" type="submit" value="Submit">
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
