@@ -1,30 +1,55 @@
-import { Module } from '@nestjs/common';
-import { AuthenticationService } from './authentication.service';
-import { AuthenticationController } from './authentication.controller';
-import { UsersModule } from '../users/users.module';
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './secret.constants';
-import { JwtAuthGuard } from './guards/jwt-auth-guard';
-import { jwtStrategy } from './strategies/jwt.strategy';
-import { LocalStrategy } from './strategies/local.strategy';
-import { RolesGuard } from './guards/roles.guard';
+import { Module } from "@nestjs/common";
+import { AuthenticationController } from "./authentication.controller";
+import { UsersModule } from "../users/users.module";
+import { PassportModule } from "@nestjs/passport";
+import { JwtAuthGuard } from "./guards/jwt.authentication.guard";
+import { jwtStrategy } from "./strategies/jwt.global.strategy";
+import { LocalStrategy } from "./strategies/local.authentication.strategy";
+import { RolesGuard } from "./guards/roles.guard";
+import { ResetPasswordGuard } from "./guards/reset.password.guard";
+import { MailService } from "./services/email.service";
+import { JwtModule } from "@nestjs/jwt";
+import { AuthenticationService } from "./services/authentication.service";
+import {
+  IJwtService,
+  LoginJwtService,
+  resetJwtService,
+} from "./services/jwt.services";
 
+//
 @Module({
-  imports : [UsersModule, PassportModule.register({}), JwtModule.register({
-    secret : jwtConstants.secret,
-    signOptions : {
-      expiresIn : '1h',
-    }
-  })],
+  imports: [
+    UsersModule,
+    PassportModule.register({}),
+    JwtModule.registerAsync({
+      useFactory: () => ({
+        secret: process.env.SECRET_KEY,
+        signOptions: {
+          expiresIn: process.env.JWT_EXPIRATION,
+        },
+      }),
+    }),
+  ],
   providers: [
-    AuthenticationService , 
-    LocalStrategy , 
-    JwtAuthGuard , 
+    AuthenticationService,
+    MailService,
+    LocalStrategy,
+    JwtAuthGuard,
+    ResetPasswordGuard,
     jwtStrategy,
-    RolesGuard
+    RolesGuard,
+    IJwtService,
+    LoginJwtService,
+    resetJwtService,
   ],
   controllers: [AuthenticationController],
-  exports : [JwtAuthGuard , RolesGuard ]
+  exports: [
+    JwtAuthGuard,
+    RolesGuard,
+    MailService,
+    IJwtService,
+    LoginJwtService,
+    resetJwtService,
+  ],
 })
 export class AuthenticationModule {}
