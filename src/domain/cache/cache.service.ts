@@ -18,4 +18,8 @@ export class CacheService {
     const cache = await this.cacheModel.find({ key: key });
     return cache;
   }
+
+  async deleteCache(key: string): Promise<unknown> {
+    return await this.cacheModel.deleteOne({ key: key });
+  }
 }
