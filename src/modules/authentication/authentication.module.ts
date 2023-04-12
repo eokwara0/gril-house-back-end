@@ -15,6 +15,8 @@ import {
   resetJwtService,
 } from "./services/jwt.services";
 import { RolesGuard } from "./guards/roles.guard";
+import { APP_INTERCEPTOR } from "@nestjs/core";
+import { CacheInterceptor } from "@nestjs/cache-manager";
 
 //
 @Module({
@@ -31,6 +33,10 @@ import { RolesGuard } from "./guards/roles.guard";
     }),
   ],
   providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: CacheInterceptor,
+    },
     AuthenticationService,
     MailService,
     LocalStrategy,

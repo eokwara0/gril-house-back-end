@@ -2,18 +2,22 @@
 import {
   HttpException,
   HttpStatus,
+  Inject,
   Injectable,
   UnauthorizedException,
 } from "@nestjs/common";
+
 import { LoginJwtService, resetJwtService } from "./jwt.services";
 import { User } from "src/modules/users/user.models/users.shema";
 import { UsersService } from "src/modules/users/services/users.service";
 import { MailService } from "./email.service";
-
+import { CACHE_MANAGER } from "@nestjs/cache-manager";
+import { Cache } from "cache-manager";
 @Injectable()
 export class AuthenticationService {
   // constructor function
   constructor(
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private userService: UsersService,
     private jwtService: LoginJwtService,
     private resetJwtService: resetJwtService,
@@ -54,8 +58,13 @@ export class AuthenticationService {
       sub: user._id,
       role: user.role,
     };
+
+    const token = await this.jwtService.signAsync(payload);
+
+    // setting it to cache
+    await this.cacheManager.set(user.username, token, 3600000);
     return {
-      access_token: await this.jwtService.signAsync(payload),
+      access_token: token,
     };
   }
 
@@ -100,6 +109,10 @@ export class AuthenticationService {
     const payload: Record<string, any> = this.getPayload(user);
     const jwtToken = await this.resetJwtService.signAsync(payload);
 
+    // cache  token
+    await this.cacheManager.set(`reset.${user.username}`, jwtToken, 300000);
+
+    // send email notification
     try {
       await this.emails.send_({
         text: `http://localhost:3000/auth/reset/${payload.id}?jwt=${jwtToken}&&`,
@@ -120,8 +133,9 @@ export class AuthenticationService {
    */
   async reset(data: Record<string, any>): Promise<Record<string, any>> {
     const vp = await AuthenticationService.validatePassword(data.newpassword);
-
     if (vp) {
+      const cacheKey = `reset.${data.username}`;
+      await this.cacheManager.del(cacheKey);
       return this.userService.updateUserPassword(data);
     }
     throw new HttpException("Weak Password Strength", 402);

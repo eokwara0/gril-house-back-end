@@ -1,5 +1,4 @@
 import {
-  Body,
   Controller,
   Get,
   HttpCode,
@@ -64,16 +63,18 @@ export class AuthenticationController {
     });
   }
 
-  @Roles()
-  @UseGuards(JwtAuthGuard)
+  // @Roles()
+  @UseGuards(ResetPasswordGuard)
   @Post("/password/:id")
   async updateUserPassword(
     @Param("id") id: string,
-    @Query("newpassword") password: string
+    @Query("newpassword") password: string,
+    @Req() req
   ): Promise<Record<string, string>> {
     return this.authservice.reset({
       id: id,
       newpassword: password,
+      username: req.user.username,
     });
   }
 }
