@@ -3,7 +3,6 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { User, type UserDocument } from "../user.models/users.shema";
 import { Queries } from "../../../domain/interfaces/query.interface";
-import { AuthenticationService } from "../../authentication/services/authentication.service";
 
 @Injectable()
 export class UsersService {
