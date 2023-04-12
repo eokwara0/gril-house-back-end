@@ -1,8 +1,4 @@
-import {
-  BadGatewayException,
-  Injectable,
-  UnauthorizedException,
-} from "@nestjs/common";
+import { BadGatewayException, Injectable } from "@nestjs/common";
 import * as nodemailer from "nodemailer";
 
 @Injectable()
