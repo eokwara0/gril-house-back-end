@@ -72,9 +72,9 @@ export class AuthenticationController {
     @Req() req
   ): Promise<Record<string, string>> {
     return this.authservice.reset({
-      username: req.user.username,
       id: id,
       newpassword: password,
+      username: req.user.username,
     });
   }
 }
