@@ -5,10 +5,9 @@ import {
   Injectable,
   UnauthorizedException,
 } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
-import { IJwtService, LoginJwtService, resetJwtService } from "./jwt.services";
+import { LoginJwtService, resetJwtService } from "./jwt.services";
 import { User } from "src/modules/users/user.models/users.shema";
-import { UsersService } from "src/modules/users/users.service";
+import { UsersService } from "src/modules/users/services/users.service";
 import { MailService } from "./email.service";
 
 @Injectable()
@@ -32,13 +31,15 @@ export class AuthenticationService {
     pass: string
   ): Promise<Record<string, unknown>> {
     const user: User = await this.userService.findByUserName(username);
-    const strongPass: boolean = await this.validatePassword(pass);
+    const strongPass: boolean = await AuthenticationService.validatePassword(
+      pass
+    );
     const validPass: boolean = pass === user.password;
 
     if (!user || !strongPass || !validPass) {
       throw new UnauthorizedException();
     }
-    const result = await this.extractResult(user);
+    const result = await AuthenticationService.extractResult(user);
     return result;
   }
 
@@ -47,7 +48,7 @@ export class AuthenticationService {
    * @param user
    * @returns access token using the user information
    */
-  async login(user: Record<string, unknown>): Promise<Record<string, unknown>> {
+  async login(user: Record<string, any>): Promise<Record<string, unknown>> {
     const payload = {
       username: user.username,
       sub: user._id,
@@ -66,7 +67,7 @@ export class AuthenticationService {
   async getUserProfile(userId: string): Promise<Record<string, unknown>> {
     const user = await this.userService.findUserById(userId);
     if (user) {
-      const result = await this.extractResult(user);
+      const result = await AuthenticationService.extractResult(user);
       return result;
     }
     return null;
@@ -80,7 +81,7 @@ export class AuthenticationService {
    */
   async sendVerificationEmail(email: string): Promise<Record<string, unknown>> {
     // validate email
-    const valid = this.validateEmail(email);
+    const valid = AuthenticationService.validateEmail(email);
     if (!valid) {
       throw new UnauthorizedException({ message: "Invalid email " });
     }
@@ -112,9 +113,27 @@ export class AuthenticationService {
     }
   }
 
+  /**
+   * Updates user password if it's a strong password
+   * @param data
+   * @returns Record object
+   */
+  async reset(data: Record<string, any>): Promise<Record<string, any>> {
+    const vp = await AuthenticationService.validatePassword(data.newpassword);
+
+    if (vp) {
+      return this.userService.updateUserPassword(data);
+    }
+    throw new HttpException("Weak Password Strength", 402);
+  }
+  /**
+   *  returns a payload object
+   * @param user
+   * @returns  Record<string,any>
+   */
   private getPayload(user: User): Record<string, any> {
     return {
-      id: user?._id,
+      id: user?.id,
       username: user.username,
       password: user.password,
     };
@@ -126,13 +145,13 @@ export class AuthenticationService {
    * @param email
    * @returns {bool}
    */
-  private async validateEmail(email: string): Promise<boolean> {
+  public static async validateEmail(email: string): Promise<boolean> {
     const regex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     return regex.test(email);
   }
 
-  private async validatePassword(password: string): Promise<boolean> {
+  public static async validatePassword(password: string): Promise<boolean> {
     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     return regex.test(password);
   }
@@ -143,9 +162,11 @@ export class AuthenticationService {
    * @param user
    * @returns Record<string, string>
    */
-  private async extractResult(user: User): Promise<Record<string, unknown>> {
+  public static async extractResult(
+    user: User
+  ): Promise<Record<string, unknown>> {
     return {
-      _id: user._id,
+      _id: user.id,
       role: user.role,
       email: user.email,
       lastname: user.lastname,

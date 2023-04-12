@@ -5,7 +5,7 @@ import {
 } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import { type Observable } from "rxjs";
-import { type ROLES } from "src/modules/interfaces/roles.enum";
+import { type ROLES } from "src/domain/interfaces/roles.enum";
 import { ROLES_KEY } from "../decorators/roles.decorator";
 
 @Injectable()

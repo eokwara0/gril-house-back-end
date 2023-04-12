@@ -5,7 +5,6 @@ import { PassportModule } from "@nestjs/passport";
 import { JwtAuthGuard } from "./guards/jwt.authentication.guard";
 import { jwtStrategy } from "./strategies/jwt.global.strategy";
 import { LocalStrategy } from "./strategies/local.authentication.strategy";
-import { RolesGuard } from "./guards/roles.guard";
 import { ResetPasswordGuard } from "./guards/reset.password.guard";
 import { MailService } from "./services/email.service";
 import { JwtModule } from "@nestjs/jwt";
@@ -15,6 +14,7 @@ import {
   LoginJwtService,
   resetJwtService,
 } from "./services/jwt.services";
+import { RolesGuard } from "./guards/roles.guard";
 
 //
 @Module({
@@ -44,6 +44,7 @@ import {
   ],
   controllers: [AuthenticationController],
   exports: [
+    AuthenticationService,
     JwtAuthGuard,
     RolesGuard,
     MailService,
