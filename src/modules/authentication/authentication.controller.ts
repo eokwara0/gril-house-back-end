@@ -6,20 +6,18 @@ import {
   HttpStatus,
   Param,
   Post,
+  Query,
   Render,
   Req,
   UnauthorizedException,
   UseGuards,
-  UsePipes,
-  ValidationPipe,
 } from "@nestjs/common";
-import { ROLES } from "../interfaces/roles.enum";
 import { Roles } from "./decorators/roles.decorator";
 import { JwtAuthGuard } from "./guards/jwt.authentication.guard";
 import { LocalAuthGuard } from "./guards/local.authentication.guard";
-import { RolesGuard } from "./guards/roles.guard";
 import { ResetPasswordGuard } from "./guards/reset.password.guard";
 import { AuthenticationService } from "./services/authentication.service";
+import { RolesGuard } from "./guards/roles.guard";
 
 @Controller("auth")
 export class AuthenticationController {
@@ -30,28 +28,17 @@ export class AuthenticationController {
   @HttpCode(HttpStatus.OK)
   @Post("login")
   @UseGuards(LocalAuthGuard)
-  async login(
-    @Body(ValidationPipe) signinDto: Record<string, unknown>
-  ): Promise<Record<string, unknown>> {
-    return this.authservice.login(signinDto);
+  async login(@Req() req): Promise<Record<string, any>> {
+    return this.authservice.login(req.user);
   }
 
-  @Roles(ROLES.ADMIN, ROLES.MANAGER)
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @UsePipes(
-    new ValidationPipe({
-      skipMissingProperties: true,
-      skipNullProperties: true,
-      skipUndefinedProperties: true,
-    })
-  )
-
-  // Profile endpoint
   @Roles()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get("profile")
-  async getProfile(@Req() req): Promise<Record<string, unknown>> {
-    return this.authservice.getUserProfile(req.user._id);
+  async getProfile(
+    @Req() req: Record<string, any>
+  ): Promise<Record<string, any>> {
+    return this.authservice.getUserProfile(req.user.id);
   }
 
   @Roles()
@@ -74,6 +61,19 @@ export class AuthenticationController {
     }
     throw new UnauthorizedException({
       message: "You do not have permission to this page.",
+    });
+  }
+
+  @Roles()
+  @UseGuards(JwtAuthGuard)
+  @Post("/password/:id")
+  async updateUserPassword(
+    @Param("id") id: string,
+    @Query("newpassword") password: string
+  ): Promise<Record<string, string>> {
+    return this.authservice.reset({
+      id: id,
+      newpassword: password,
     });
   }
 }

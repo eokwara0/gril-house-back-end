@@ -23,6 +23,6 @@ export class LoginJwtService extends IJwtService {
 @Injectable()
 export class resetJwtService extends IJwtService {
   constructor() {
-    super("3000s");
+    super("300s");
   }
 }
