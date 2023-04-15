@@ -53,6 +53,7 @@ export class UsersController {
     return this.userService.createUser(user);
   }
 
+  @Roles()
   @Get(":id")
   @Roles()
   @ApiBearerAuth()
