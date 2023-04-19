@@ -39,4 +39,9 @@ export class MenuItemService {
   async getActiveMenuItems(): Promise<MenuItem[]> {
     return await this.menuItemModel.find({ active: true });
   }
+
+  // TODO ::: remove menu item
+  async removeMenuItem(item: MenuItem): Promise<void> {
+    // TODO ::: remove menu item
+  }
 }
