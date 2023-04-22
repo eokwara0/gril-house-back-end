@@ -1,7 +1,8 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { IsBoolean, IsNumber, IsObject, IsString } from "class-validator";
 import mongoose, { HydratedDocument } from "mongoose";
-import { IRecipe, Recipe, RecipeDocument } from "./recipe.model";
+import { Recipe } from "./recipe.model";
+import Nutrition from "./nutrition";
 
 export type IItem = {
   Id: string;
@@ -12,7 +13,9 @@ export type IItem = {
   price: number;
   quantity: number;
   unit: string;
-  recipe: Recipe;
+  prep: string;
+  recipe: Recipe[];
+  nutrition: Nutrition;
   instructions: string;
   content: string;
 };
@@ -56,15 +59,31 @@ export default class Item implements IItem {
 
   @IsObject()
   @Prop({ name: "Recipe", type: mongoose.Schema.Types.Mixed })
-  recipe: Recipe;
+  recipe: Recipe[];
 
   @IsString()
-  @Prop({ name: "Instructions", type: mongoose.Schema.Types.String })
+  @Prop({
+    name: "Instructions",
+    type: mongoose.Schema.Types.String,
+    required: true,
+  })
   instructions: string;
 
   @IsString()
   @Prop({ name: "Recipe Content", type: mongoose.Schema.Types.String })
   content: string;
+
+  @IsObject()
+  @Prop({
+    name: "Nutrition",
+    type: mongoose.Schema.Types.Mixed,
+    required: true,
+  })
+  nutrition: Nutrition;
+
+  @IsString()
+  @Prop({ name: "Prep time", type: mongoose.Schema.Types.String })
+  prep: string;
 
   constructor(
     vendorId: string,
@@ -74,7 +93,9 @@ export default class Item implements IItem {
     price: number,
     quantity: number,
     unit: string,
-    recipe: Recipe,
+    prep: string,
+    recipe: Recipe[],
+    nutrition: Nutrition,
     instructions: string,
     content: string
   ) {
@@ -85,7 +106,9 @@ export default class Item implements IItem {
     this.price = price;
     this.quantity = quantity;
     this.unit = unit;
+    this.prep = prep;
     this.recipe = recipe;
+    this.nutrition = nutrition;
     this.instructions = instructions;
     this.content = content;
   }

@@ -1,6 +1,6 @@
 import { SchemaFactory, Schema, Prop } from "@nestjs/mongoose";
 import mongoose, { HydratedDocument } from "mongoose";
-import Item from "./item.model";
+import Item, { ItemDocument, ItemSchema } from "./item.model";
 import { IsBoolean, IsObject, IsString } from "class-validator";
 
 export type IMenuItem = {
@@ -59,10 +59,10 @@ export class MenuItem implements IMenuItem {
     unique: true,
     required: true,
   })
-  item: Item;
+  item: ItemDocument; //
 
   // constructor
-  constructor(menuId: string, active: boolean, item: Item) {
+  constructor(menuId: string, active: boolean, item: ItemDocument) {
     this.menuId = menuId;
     this.active = active;
     this.item = item;

@@ -4,6 +4,8 @@ import mongoose, { HydratedDocument } from "mongoose";
 
 export type IRecipe = {
   id: string;
+  title: string;
+  summary: string;
   quantity: number;
   unit: string;
   instructions: string;
@@ -42,10 +44,32 @@ export class Recipe implements IRecipe {
   @IsString()
   instructions: string;
 
-  constructor(quantity: number, unit: string, instructions: string) {
+  @IsString()
+  @Prop({
+    name: "Recipe title",
+    type: mongoose.Schema.Types.String,
+  })
+  title: string;
+
+  @IsString()
+  @Prop({
+    name: "Recipe description",
+    type: mongoose.Schema.Types.String,
+  })
+  summary: string;
+
+  constructor(
+    quantity: number,
+    unit: string,
+    instructions: string,
+    title: string,
+    summary: string
+  ) {
     this.quantity = quantity;
     this.unit = unit;
     this.instructions = instructions;
+    this.title = title;
+    this.summary = summary;
   }
 }
 
