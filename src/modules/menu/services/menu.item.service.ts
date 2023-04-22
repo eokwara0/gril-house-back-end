@@ -15,12 +15,15 @@ export class MenuItemService {
   }
 
   async getMenuItems(): Promise<MenuItem[]> {
-    return this.menuItemModel.find({});
+    return this.menuItemModel.find({ active: true });
   }
 
   async getMenusItemByMenuId(menuId: string): Promise<MenuItem[]> {
     try {
-      const result = await this.menuItemModel.find({ menId: menuId });
+      const result = await this.menuItemModel.find({
+        menuId: menuId,
+        active: true,
+      });
       if (result) {
         return result;
       }
@@ -38,5 +41,29 @@ export class MenuItemService {
 
   async getActiveMenuItems(): Promise<MenuItem[]> {
     return await this.menuItemModel.find({ active: true });
+  }
+
+  // TODO ::: remove menu item
+  async removeMenuItem(id: string): Promise<any> {
+    const result = await this.menuItemModel.findByIdAndDelete(id, {});
+    if (result === null) {
+      throw new HttpException(
+        "Invalid menuItem id, item does not exists",
+        HttpStatus.BAD_REQUEST
+      );
+    }
+    return result;
+  }
+
+  async menuItemWordSearch(searchPattern: string): Promise<MenuItem[]> {
+    const regex = new RegExp(`.*${searchPattern}.*`, "ims");
+    const result = await this.menuItemModel.find({
+      $or: [
+        { "item.title": { $regex: regex } },
+        { "item.summary": { $regex: regex } },
+      ],
+      active: true,
+    });
+    return result;
   }
 }
