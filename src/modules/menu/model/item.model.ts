@@ -12,7 +12,7 @@ export type IItem = {
   price: number;
   quantity: number;
   unit: string;
-  recipe: Recipe;
+  recipe: Recipe[];
   instructions: string;
   content: string;
 };
@@ -56,7 +56,7 @@ export default class Item implements IItem {
 
   @IsObject()
   @Prop({ name: "Recipe", type: mongoose.Schema.Types.Mixed })
-  recipe: Recipe;
+  recipe: Recipe[];
 
   @IsString()
   @Prop({ name: "Instructions", type: mongoose.Schema.Types.String })
@@ -74,7 +74,7 @@ export default class Item implements IItem {
     price: number,
     quantity: number,
     unit: string,
-    recipe: Recipe,
+    recipe: Recipe[],
     instructions: string,
     content: string
   ) {

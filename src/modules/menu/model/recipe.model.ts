@@ -3,7 +3,8 @@ import { IsNumber, IsString } from "class-validator";
 import mongoose, { HydratedDocument } from "mongoose";
 
 export type IRecipe = {
-  id: string;
+  title: string;
+  summary: string;
   quantity: number;
   unit: string;
   instructions: string;
@@ -17,9 +18,6 @@ export type IRecipe = {
   versionKey: false,
 })
 export class Recipe implements IRecipe {
-  @IsString()
-  id: string;
-
   @Prop({
     name: "quantity",
     type: mongoose.Schema.Types.Number,
@@ -41,6 +39,20 @@ export class Recipe implements IRecipe {
   })
   @IsString()
   instructions: string;
+
+  @IsString()
+  @Prop({
+    name: "title",
+    type: mongoose.Schema.Types.String,
+  })
+  title: string;
+
+  @Prop({
+    name: "summary",
+    type: mongoose.Schema.Types.String,
+  })
+  @IsString()
+  summary: string;
 
   constructor(quantity: number, unit: string, instructions: string) {
     this.quantity = quantity;

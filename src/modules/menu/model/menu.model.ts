@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { IsString } from "class-validator";
 import mongoose, { HydratedDocument } from "mongoose";
-import { type } from "os";
 
 @Schema({
   minimize: true,
