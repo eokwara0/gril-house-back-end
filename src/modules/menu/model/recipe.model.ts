@@ -42,22 +42,30 @@ export class Recipe implements IRecipe {
 
   @IsString()
   @Prop({
-    name: "title",
+    name: "Recipe title",
     type: mongoose.Schema.Types.String,
   })
   title: string;
 
+  @IsString()
   @Prop({
-    name: "summary",
+    name: "Recipe description",
     type: mongoose.Schema.Types.String,
   })
-  @IsString()
   summary: string;
 
-  constructor(quantity: number, unit: string, instructions: string) {
+  constructor(
+    quantity: number,
+    unit: string,
+    instructions: string,
+    title: string,
+    summary: string
+  ) {
     this.quantity = quantity;
     this.unit = unit;
     this.instructions = instructions;
+    this.title = title;
+    this.summary = summary;
   }
 }
 

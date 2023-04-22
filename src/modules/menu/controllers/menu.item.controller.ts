@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -15,6 +16,7 @@ import { MenuItem } from "../model/menu.item.model";
 import { JwtAuthGuard } from "src/modules/authentication/guards/jwt.authentication.guard";
 import { RolesGuard } from "src/modules/authentication/guards/roles.guard";
 import { Roles } from "src/modules/authentication/decorators/roles.decorator";
+import { ROLES } from "src/domain/interfaces/roles.enum";
 
 @Controller("menuItem")
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -43,7 +45,7 @@ export default class MenuItemController {
     return this.menuItemService.createMenuItem(item);
   }
 
-  @Get("menuId/:menuId")
+  @Get("item/:menuId")
   @Roles()
   @HttpCode(HttpStatus.OK)
   async getMenusByMeunItemsIds(
@@ -57,5 +59,21 @@ export default class MenuItemController {
   @HttpCode(HttpStatus.OK)
   async getActiveMenus(): Promise<MenuItem[]> {
     return this.menuItemService.getActiveMenuItems();
+  }
+
+  @Get("search/:regex")
+  @Roles()
+  @HttpCode(HttpStatus.OK)
+  async getItemsBySearch(
+    @Param("regex", ValidationPipe) regex: string
+  ): Promise<MenuItem[]> {
+    return this.menuItemService.menuItemWordSearch(regex);
+  }
+
+  @Delete(":id")
+  @Roles(ROLES.ADMIN)
+  @HttpCode(HttpStatus.ACCEPTED)
+  async delete(@Param("id") id: string): Promise<any> {
+    return this.menuItemService.removeMenuItem(id);
   }
 }
