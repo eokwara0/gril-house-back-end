@@ -30,6 +30,7 @@ export class MenuController {
     return this.menuService.findAllMenu();
   }
 
+  @Roles()
   @Get(":title")
   async getByTitle(@Param("title") title: string): Promise<Menu> {
     return this.menuService.findMenuByTitle(title);
@@ -39,6 +40,9 @@ export class MenuController {
   @UsePipes(
     new ValidationPipe({
       transform: true,
+      skipMissingProperties: true,
+      skipNullProperties: true,
+      skipUndefinedProperties: true,
     })
   )
   @Roles(ROLES.ADMIN, ROLES.MANAGER)

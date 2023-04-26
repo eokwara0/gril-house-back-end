@@ -45,7 +45,7 @@ export default class MenuItemController {
     return this.menuItemService.createMenuItem(item);
   }
 
-  @Get("item/:menuId")
+  @Get("menuId/:menuId")
   @Roles()
   @HttpCode(HttpStatus.OK)
   async getMenusByMeunItemsIds(
@@ -68,6 +68,15 @@ export default class MenuItemController {
     @Param("regex", ValidationPipe) regex: string
   ): Promise<MenuItem[]> {
     return this.menuItemService.menuItemWordSearch(regex);
+  }
+
+  @Get("item/:itemId")
+  @Roles()
+  @HttpCode(HttpStatus.OK)
+  async getMenuByItemId(
+    @Param("itemId", ValidationPipe) itemId: string
+  ): Promise<MenuItem> {
+    return this.menuItemService.getMenuByItemId(itemId);
   }
 
   @Delete(":id")

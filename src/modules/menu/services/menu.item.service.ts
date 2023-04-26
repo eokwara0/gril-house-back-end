@@ -66,4 +66,16 @@ export class MenuItemService {
     });
     return result;
   }
+
+  async getMenuByItemId(itemId: string): Promise<MenuItem> {
+    try {
+      const result = await this.menuItemModel.findById(itemId);
+      if (result === null) {
+        throw new HttpException("Invalid item id ", HttpStatus.BAD_REQUEST);
+      }
+      return result;
+    } catch (error) {
+      throw new HttpException("Invalid itemId", HttpStatus.BAD_REQUEST);
+    }
+  }
 }

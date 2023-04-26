@@ -8,6 +8,8 @@ import { OrderModule } from "./modules/order/order.module";
 import { TableModule } from "./modules/table/table.module";
 import { BillingModule } from "./modules/billing/billing.module";
 import { ReportModule } from "./modules/report/report.module";
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { join } from "path";
 
 //
 @Module({
@@ -17,6 +19,9 @@ import { ReportModule } from "./modules/report/report.module";
     }),
     CacheModule.register({
       isGlobal: true,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, "../..", "public"),
     }),
     UsersModule,
     MongooseModule.forRoot(process.env.MONGO_URL),

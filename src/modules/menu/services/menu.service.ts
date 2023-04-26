@@ -48,14 +48,10 @@ export class MenuService {
    * @returns list of Menu
    */
   async deletMenu(title: string): Promise<any> {
-    try {
-      const result = await this.menuModel.deleteOne({ _title: title });
-      if (result.acknowledged) {
-        return this.menuModel.find();
-      }
-      return new HttpException("Menu does not exist", HttpStatus.NOT_FOUND);
-    } catch (error) {
-      throw new HttpException("Failed to delete menu", HttpStatus.BAD_REQUEST);
+    const result = await this.menuModel.deleteOne({ _title: title });
+    if (result.deletedCount > 0) {
+      return this.menuModel.countDocuments();
     }
+    throw new HttpException("Menu not found", HttpStatus.NOT_FOUND);
   }
 }

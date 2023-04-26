@@ -101,7 +101,7 @@ const mainMenuMeals = [
         fat: "24g",
         carbs: "4g",
         protein: "53g",
-        calories: "452g",
+        calories: "452",
       },
       instructions: `
       1. Stir salt, black pepper, garlic powder, paprika, onion powder, rosemary, and cayenne pepper together in a bowl.
@@ -176,7 +176,7 @@ const mainMenuMeals = [
         fat: "34g",
         carbs: "7g",
         protein: "41g",
-        calories: "510g",
+        calories: "510",
       },
       instructions:
         "1. Preheat the oven to 375 degrees F (190 degrees C)." +
@@ -278,7 +278,7 @@ const mainMenuMeals = [
         fat: "7g",
         carbs: "41g",
         protein: "33g",
-        calories: "356g",
+        calories: "356",
       },
       instructions:
         "1. Gather all ingredients" +
@@ -367,7 +367,7 @@ const mainMenuMeals = [
         fat: "12g",
         carbs: "1g",
         protein: "28g",
-        calories: "232g",
+        calories: "232",
       },
       instructions:
         "1. Gather all ingredients" +
@@ -442,7 +442,7 @@ const mainMenuMeals = [
         fat: "7g",
         carbs: "6g",
         protein: "10g",
-        calories: "129g",
+        calories: "129",
       },
       instructions:
         "1. Preheat a grill to medium heat" +
@@ -582,7 +582,7 @@ const mainMenuMeals = [
         fat: "104g",
         carbs: "11g",
         protein: "59g",
-        calories: "1239g",
+        calories: "1239",
       },
       instructions:
         "1. Prepare a thermocirculator and water bath according to manufacturer's directions. Set thermocirculator to 128 degrees F (53 degrees C) and allow water bath to come up to temperature." +
@@ -717,7 +717,7 @@ const starterMenu = [
           instructions: "",
         },
       ],
-      nutrition: { fat: "10g", carbs: "31g", protein: "28g", calories: "324g" },
+      nutrition: { fat: "10g", carbs: "31g", protein: "28g", calories: "324" },
       instructions:
         "Heat a skillet over medium-high heat. Add dried chiles; cook, turning occasionally, until toasted and blistered in spots, 3 to 5 minutes. Add 1 cup water to just cover the chiles, and bring to a simmer over medium-high. Cover and cook, undisturbed, until softened, about 5 minutes. Drain well.\n" +
         "Combine chiles, achiote, garlic, chipotles, 2/3 cup onion, orange juice, vinegar, oil, cumin, brown sugar, and salt in a blender; process until smooth, about 30 seconds. Reserve 1/2 cup marinade, cover, and refrigerate until ready to use.\n" +
@@ -825,7 +825,7 @@ const starterMenu = [
           instructions: "",
         },
       ],
-      nutrition: { fat: "13g", carbs: "56g", protein: "11g", calories: "377g" },
+      nutrition: { fat: "13g", carbs: "56g", protein: "11g", calories: "377" },
       instructions:
         "Preheat the oven to 425 degrees F (220 degrees C). Grease a baking sheet. Unroll pizza dough onto prepared baking sheet. Bake for 6 minutes.\n" +
         "Line a 10x15-inch baking pan with foil. Arrange grapes in prepared baking pan. Drizzle with 1 tablespoon oil and sprinkle with 1/2 teaspoon rosemary and 1/4 teaspoon salt; toss to coat.\n" +
@@ -956,7 +956,7 @@ const starterMenu = [
           instructions: "",
         },
       ],
-      nutrition: { fat: "69g", carbs: "31g", protein: "58g", calories: "971g" },
+      nutrition: { fat: "69g", carbs: "31g", protein: "58g", calories: "971" },
       instructions:
         "Preheat the oven to 425 degrees F (220 degrees C). Position a rack in the center position of the oven and line a baking sheet with aluminum foil.\n" +
         "Place halved peppers, cut-side down, on the prepared baking sheet (leave stems on) and drizzle evenly with 1 tablespoon olive oil. Season inside and outside of peppers with 1/2 teaspoon salt.\n" +
@@ -1057,7 +1057,7 @@ const starterMenu = [
       price: 79,
       quantity: 349,
       unit: "servings",
-      prep: "15mins",
+      prep: "15min",
       recipe: [
         {
           title:
@@ -1163,7 +1163,7 @@ const dessertMenu = [
       price: 49,
       quantity: 123,
       unit: "servings",
-      prep: "45 mins",
+      prep: "45 min",
       recipe: [
         {
           title: "unsalted butter, plus additional",
@@ -1418,7 +1418,7 @@ const dessertMenu = [
       price: 35,
       quantity: 232,
       unit: "servings",
-      prep: "25mins",
+      prep: "25min",
       recipe: [
         {
           title: "cold milk",
@@ -1740,7 +1740,7 @@ const soups = [
       price: 30,
       quantity: 132,
       unit: "servings",
-      prep: "15 mins",
+      prep: "15min",
       recipe: [
         {
           title: "low-sodium broth (any type of",
@@ -1812,7 +1812,7 @@ const soups = [
       price: 40,
       quantity: 132,
       unit: "servings",
-      prep: "25mins",
+      prep: "25min",
       recipe: [
         {
           title: "olive oil",
@@ -1965,7 +1965,7 @@ const soups = [
       price: 47.99,
       quantity: 132,
       unit: "servings",
-      prep: "30mins",
+      prep: "30min",
       recipe: [
         {
           title: "beef chuck roast",
@@ -2081,7 +2081,7 @@ const soups = [
       price: 39.99,
       quantity: 132,
       unit: "servings",
-      prep: "20mins",
+      prep: "20min",
       recipe: [
         {
           title: "olive oil, divided",
@@ -2228,7 +2228,7 @@ const soups = [
       price: 76.99,
       quantity: 132,
       unit: "servings",
-      prep: "20mins",
+      prep: "20min",
       recipe: [
         {
           title: "lean ground beef",
@@ -2344,7 +2344,7 @@ const soups = [
       price: 54.99,
       quantity: 132,
       unit: "servings",
-      prep: "45mins",
+      prep: "45min",
       recipe: [
         {
           title: "vegetable oil",
@@ -2452,7 +2452,7 @@ const soups = [
       price: 68.99,
       quantity: 275,
       unit: "servings",
-      prep: "20mins",
+      prep: "20min",
       recipe: [
         {
           title: "butter",
@@ -2838,7 +2838,7 @@ const drinks = [
       price: 23.99,
       quantity: 275,
       unit: "servings",
-      prep: "10mins",
+      prep: "10min",
       recipe: [
         {
           title: "lime",
@@ -2919,7 +2919,7 @@ const drinks = [
       price: 29.99,
       quantity: 34,
       unit: "servings",
-      prep: "10mins",
+      prep: "10min",
       recipe: [
         {
           title: "frozen strawberries",
@@ -3295,7 +3295,7 @@ const drinks = [
       price: 36.99,
       quantity: 510,
       unit: "servings",
-      prep: "15mins",
+      prep: "15min",
       recipe: [
         {
           title: "fresh cantaloupe cubes (6",
