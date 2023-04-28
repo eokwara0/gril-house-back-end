@@ -46,12 +46,35 @@ export class Menu implements IMenu {
   @IsString()
   private _userId: string;
 
+  @IsString()
+  @Prop({
+    name: "imageUrl",
+    type: mongoose.Schema.Types.String,
+    required: false,
+    default: "",
+  })
+  private _imageUrl: string;
+
   // constructor
-  constructor(title: string, summary: string, content: string, userId: string) {
+  constructor(
+    title: string,
+    summary: string,
+    content: string,
+    userId: string,
+    imageUrl: string
+  ) {
     this.title = title;
     this.summary = summary;
     this.content = content;
     this.userId = userId;
+    this.imageUrl = imageUrl;
+  }
+
+  public get imageUrl(): string {
+    return this._imageUrl;
+  }
+  public set imageUrl(value: string) {
+    this._imageUrl = value;
   }
 
   public get title(): string {
@@ -90,6 +113,7 @@ export type IMenu = {
   title: string;
   summary: string;
   content: string;
+  imageUrl: string;
 };
 
 export type MenuDocument = HydratedDocument<Menu>;

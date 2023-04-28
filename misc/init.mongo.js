@@ -3,6 +3,7 @@ const mainMenuMeals = [
     menuId: "643e67a93cac95a4fabe0f14",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/main/smg.webp",
     item: {
       title: "Santa Maria Grilled Tri-Tip Beef",
       summary: `Santa Maria tri-itp mariande of spices and herbs makes this recipe spectacular.`,
@@ -103,13 +104,13 @@ const mainMenuMeals = [
         protein: "53g",
         calories: "452",
       },
-      instructions: `
-      1. Stir salt, black pepper, garlic powder, paprika, onion powder, rosemary, and cayenne pepper together in a bowl.
-      2. Place tri-tip in a glass baking dish and coat on all sides with spice mixture. Cover the dish with plastic wrap and refrigerate for 4 hours.
-      3. Combine vinegar, vegetable oil, crushed garlic, and Dijon mustard in a sealable container. Cover the container and shake until ingredients are blended.
-      4. Remove tri-tip from the refrigerator. Let sit uncovered at room temperature for 30 minutes.
-      5. Preheat an outdoor grill for high heat; lightly oil the grates.
-      6. Place tri-tip on the preheated grill and brush with vinegar mixture. Cook for 4 minutes, flip, and baste. Flip and baste every 4 minutes until tri-tip starts to firm up and is reddish-pink and juicy in the center, 25 to 30 minutes total. An instant-read thermometer inserted into the center should read 130 degrees F (54 degrees C). Let rest for at least 10 minutes before slicing.`,
+      instructions:
+        "Stir salt, black pepper, garlic powder, paprika, onion powder, rosemary, and cayenne pepper together in a bowl." +
+        "\nPlace tri-tip in a glass baking dish and coat on all sides with spice mixture. Cover the dish with plastic wrap and refrigerate for 4 hours." +
+        "\nCombine vinegar, vegetable oil, crushed garlic, and Dijon mustard in a sealable container. Cover the container and shake until ingredients are blended." +
+        "\nRemove tri-tip from the refrigerator. Let sit uncovered at room temperature for 30 minutes." +
+        "\nPreheat an outdoor grill for high heat; lightly oil the grates." +
+        "\nPlace tri-tip on the preheated grill and brush with vinegar mixture. Cook for 4 minutes, flip, and baste. Flip and baste every 4 minutes until tri-tip starts to firm up and is reddish-pink and juicy in the center, 25 to 30 minutes total. An instant-read thermometer inserted into the center should read 130 degrees F (54 degrees C). Let rest for at least 10 minutes before slicing.",
       content: `Santa Maria tri-itp mariande of spices and herbs makes this recipe spectacular. 
       the Town of Santa Maria, California, is home to one of America's most delicious barbecue specialties,
       the tri-tip is cut from the bottom sirloin and when cooked properly, produces a very flavourful, incredibly juicy of beef`,
@@ -120,6 +121,7 @@ const mainMenuMeals = [
     menuId: "643e67a93cac95a4fabe0f14",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/main/bsf.webp",
     item: {
       title: "Broccoli and Chicken Stir-Fry",
       summary: "Broccoli and Chicken Stir-fry .",
@@ -179,11 +181,11 @@ const mainMenuMeals = [
         calories: "510",
       },
       instructions:
-        "1. Preheat the oven to 375 degrees F (190 degrees C)." +
-        "2. Place 3 tablespoons butter in a microwave-safe bowl and heat in a microwave oven until melted, 1 to 2 minutes. Smash garlic cloves with the side of a chef's knife and add garlic to the warm butter. Stir in lemon juice and onion powder; set aside." +
-        "3. Sprinkle both sides of chicken thighs with salt and pepper. Heat remaining 1 tablespoon butter in a medium oven-safe skillet over medium-high heat. Brown chicken, skin-side down, for 3 to 4 minutes. Flip chicken over and brush skin with lemon-butter mixture. Pour remaining butter mixture into skillet and remove from heat." +
-        "4. Bake in the preheated oven until chicken is no longer pink at the bone and the juices run clear, about 30 minutes. An instant-read thermometer inserted near the bone should read 165 degrees F (74 degrees C). Brush skin every 10 minutes with pan juices." +
-        "5. Remove skillet from the oven and place chicken on a serving platter. Drizzle chicken with pan juices and garnish with parsley.",
+        "Preheat the oven to 375 degrees F (190 degrees C)." +
+        "\nPlace 3 tablespoons butter in a microwave-safe bowl and heat in a microwave oven until melted, 1 to 2 minutes. Smash garlic cloves with the side of a chef's knife and add garlic to the warm butter. Stir in lemon juice and onion powder; set aside." +
+        "\nSprinkle both sides of chicken thighs with salt and pepper. Heat remaining 1 tablespoon butter in a medium oven-safe skillet over medium-high heat. Brown chicken, skin-side down, for 3 to 4 minutes. Flip chicken over and brush skin with lemon-butter mixture. Pour remaining butter mixture into skillet and remove from heat." +
+        "\nBake in the preheated oven until chicken is no longer pink at the bone and the juices run clear, about 30 minutes. An instant-read thermometer inserted near the bone should read 165 degrees F (74 degrees C). Brush skin every 10 minutes with pan juices." +
+        "\nRemove skillet from the oven and place chicken on a serving platter. Drizzle chicken with pan juices and garnish with parsley.",
 
       content:
         "Broccoli and Chicken Stir-Fry Such an easy and delicious stir-fry full of vegetables and spicy flavors! Ginger, red pepper, soy sauce all add to the savory dish. Pair with sticky rice for a wholesome meal any day of the week!",
@@ -194,6 +196,7 @@ const mainMenuMeals = [
     menuId: "643e67a93cac95a4fabe0f14",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/main/blbc.webp",
     item: {
       title: "Baked Lemon Butter Chicken Thighs",
       summary: "Baked lemon Butter Chicken Thighs tasty meal",
@@ -281,12 +284,12 @@ const mainMenuMeals = [
         calories: "356",
       },
       instructions:
-        "1. Gather all ingredients" +
-        "2. Stir soy sauce, brown sugar, ginger, and red pepper flakes together in a bowl until sugar dissolves. Mix water and cornstarch together in a small bowl, stir with a whisk until cornstarch dissolves completely" +
-        "3. Heat oil in a large skillet over high heat. Fry chicken and onion in hot oil until chicken is no longer pink in the center and onion is tender, 5 to 7 minutes." +
-        "4. Stir in broccoli with chicken and onion; sauté until broccoli is hot, about 5 minutes." +
-        "5. Push chicken and vegetable mixture to the side of the skillet. Pour soy sauce mixture into the vacant part of the skillet. Stir cornstarch slurry into soy sauce mixture until the color is consistent." +
-        "6. Move chicken and vegetables back into the center of the pan; sauté until sauce thickens and coats chicken and vegetables, about 5 minutes more." +
+        "Gather all ingredients" +
+        "\nStir soy sauce, brown sugar, ginger, and red pepper flakes together in a bowl until sugar dissolves. Mix water and cornstarch together in a small bowl, stir with a whisk until cornstarch dissolves completely" +
+        "\nHeat oil in a large skillet over high heat. Fry chicken and onion in hot oil until chicken is no longer pink in the center and onion is tender, 5 to 7 minutes." +
+        "\nStir in broccoli with chicken and onion; sauté until broccoli is hot, about 5 minutes." +
+        "\nPush chicken and vegetable mixture to the side of the skillet. Pour soy sauce mixture into the vacant part of the skillet. Stir cornstarch slurry into soy sauce mixture until the color is consistent." +
+        "\nMove chicken and vegetables back into the center of the pan; sauté until sauce thickens and coats chicken and vegetables, about 5 minutes more." +
         "",
       content:
         "These delicious lemon garlic chicken thighs are low carb, keto friendly, and easy enough for a weeknight meal. Guaranteed to impress the pickiest eaters! Serve over egg noodles, mashed potatoes, rice, or alongside your favorite vegetables.",
@@ -297,6 +300,7 @@ const mainMenuMeals = [
     menuId: "643e67a93cac95a4fabe0f14",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/main/gsb.webp",
     item: {
       title: "Grilled Sea Bass",
       summary: "Grilled Sea Bass",
@@ -370,12 +374,12 @@ const mainMenuMeals = [
         calories: "232",
       },
       instructions:
-        "1. Gather all ingredients" +
-        "2. Preheat grill for high heat." +
-        "3. In a small bowl, stir together the garlic powder, onion powder, paprika, lemon pepper, and sea salt." +
-        "4. Sprinkle seasonings onto the fish." +
-        "5. In a small saucepan over medium heat, melt the butter with the garlic and parsley. Remove from heat when the butter has melted, and set aside." +
-        "6. Lightly oil grill grate. Grill fish for 7 minutes, then turn and drizzle with butter. Continue cooking for 7 minutes, or until easily flaked with a fork. Drizzle with olive oil before serving." +
+        "Gather all ingredients" +
+        "\nPreheat grill for high heat." +
+        "\nIn a small bowl, stir together the garlic powder, onion powder, paprika, lemon pepper, and sea salt." +
+        "\nSprinkle seasonings onto the fish." +
+        "\nIn a small saucepan over medium heat, melt the butter with the garlic and parsley. Remove from heat when the butter has melted, and set aside." +
+        "\nLightly oil grill grate. Grill fish for 7 minutes, then turn and drizzle with butter. Continue cooking for 7 minutes, or until easily flaked with a fork. Drizzle with olive oil before serving." +
         "",
       content:
         "This perfectly seasoned grilled sea bass dish includes a delicious garlic-parsley butter. Serve with steamed or grilled asparagus for a truly flavorful summer meal that's elegant enough to serve to guests.",
@@ -386,6 +390,7 @@ const mainMenuMeals = [
     menuId: "643e67a93cac95a4fabe0f14",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/main/gbw.webp",
     item: {
       title: "Grilled Buffalo Wings",
       summary: "Grilled Buffalo Wings",
@@ -445,9 +450,9 @@ const mainMenuMeals = [
         calories: "129",
       },
       instructions:
-        "1. Preheat a grill to medium heat" +
-        "2. Mix hot sauce, cola, cayenne pepper, black pepper and soy sauce together in a large pot; add wings to the sauce. Place the pot on one side of the preheated grill; bring to a simmer." +
-        "3. Use tongs to transfer wings out of sauce and place on the preheated grill; cook until lightly charred on both sides, about 8 to 10 minutes, then return wings to the sauce to continue cooking. Repeat this process until chicken is cooked and pulls easily off of the bone, and the sauce is hot and thickened, about 50 minutes. You can serve them as sloppy-style wings, or serve right off the grill for dryer wings.",
+        "Preheat a grill to medium heat" +
+        "\nMix hot sauce, cola, cayenne pepper, black pepper and soy sauce together in a large pot; add wings to the sauce. Place the pot on one side of the preheated grill; bring to a simmer." +
+        "\nUse tongs to transfer wings out of sauce and place on the preheated grill; cook until lightly charred on both sides, about 8 to 10 minutes, then return wings to the sauce to continue cooking. Repeat this process until chicken is cooked and pulls easily off of the bone, and the sauce is hot and thickened, about 50 minutes. You can serve them as sloppy-style wings, or serve right off the grill for dryer wings.",
       content: "These grilled buffalo wings taste so much better than fried!",
     },
   },
@@ -456,6 +461,7 @@ const mainMenuMeals = [
     menuId: "643e67a93cac95a4fabe0f14",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/main/bb.webp",
     item: {
       title: "Beef Brisket",
       summary: "Beef Brisket with Ancho Chilli Sauce",
@@ -585,16 +591,16 @@ const mainMenuMeals = [
         calories: "1239",
       },
       instructions:
-        "1. Prepare a thermocirculator and water bath according to manufacturer's directions. Set thermocirculator to 128 degrees F (53 degrees C) and allow water bath to come up to temperature." +
-        "2. While water heats, trim excess fat from the fat cap of the brisket to about 1/4 inch. Do not remove all the fat, as this will contribute to keeping the meat juicy. Pat brisket dry with a paper towel." +
-        "3. Combine salt, onion powder, garlic powder, smoked paprika and pepper in a small bowl. Completely cover all sides of the brisket with the spice mixture." +
-        "4. Place the brisket in a large vacuum sealable bag. Seal bag according to manufacturer's directions. Transfer vacuum sealed brisket to warm water bath with thermocirculator, cover vessel with aluminum foil to reduce evaporation, and cook undisturbed for 48 hours. Remove brisket from bag, reserving cooking liquid (you should have about 3 ½ cups cooking liquid). Strain cooking liquid through a fine mesh sieve and discard any solids. Set brisket aside on a plate or cutting board." +
-        "5. Place dried ancho chiles in a large, dry saucepan over medium high heat. Cook, turning often, until chiles are blistered, and aromatic. Remove chiles from heat and allow to cool briefly. Once chiles have cooled enough to handle, remove stems and seeds, and tear chiles into 2-inch pieces. Place torn chiles in a medium bowl with 1 cup of boiling water and 2 cups of strained, reserved cooking liquid; allow to stand until chiles have softened, about 10 minutes." +
-        "6. Meanwhile, heat 2 tablespoons canola oil in the same saucepan over medium-high heat. Add onions and smashed garlic cloves; cook, stirring often, until onions and garlic have softened, about 5 minutes. Add tomato paste and cook, stirring often, for 1 minute. Add red wine and allow mixture to reduce until most of the liquid excep tfor about 1/4 cup has evaporated, stirring occasionally. Remove from heat." +
-        "7. Remove softened chiles from liquid, and strain liquid through a fine mesh sieve, reserving 1/2 cup of the strained liquid. Combine softened chiles, 1/2 cup reserved liquid, onion mixture, and ketchup in a blender; blend until smooth. Add unsalted butter and sherry vinegar to the mixture and process until smooth. If you want a spicier sauce, add cayenne pepper or hot sauce to taste." +
-        "8. Preheat a grill or grill pan to medium high (350 degrees F to 400 degrees F / 175 degrees C to 200 degrees C)." +
-        "9. Pat brisket dry with paper towels and rub with remaining 2 tablespoons oil. Place on the preheated grill and grill until grill marks appear, the outside is slightly charred, and the brisket is heated through, about 5 minutes per side." +
-        "10. Transfer brisket to a cutting board, let stand for 5 minutes to rest, and slice thinly against the grain of the meat and serve hot with sauce." +
+        "Prepare a thermocirculator and water bath according to manufacturer's directions. Set thermocirculator to 128 degrees F (53 degrees C) and allow water bath to come up to temperature." +
+        "\nWhile water heats, trim excess fat from the fat cap of the brisket to about 1/4 inch. Do not remove all the fat, as this will contribute to keeping the meat juicy. Pat brisket dry with a paper towel." +
+        "\nCombine salt, onion powder, garlic powder, smoked paprika and pepper in a small bowl. Completely cover all sides of the brisket with the spice mixture." +
+        "\nPlace the brisket in a large vacuum sealable bag. Seal bag according to manufacturer's directions. Transfer vacuum sealed brisket to warm water bath with thermocirculator, cover vessel with aluminum foil to reduce evaporation, and cook undisturbed for 48 hours. Remove brisket from bag, reserving cooking liquid (you should have about 3 ½ cups cooking liquid). Strain cooking liquid through a fine mesh sieve and discard any solids. Set brisket aside on a plate or cutting board." +
+        "\nPlace dried ancho chiles in a large, dry saucepan over medium high heat. Cook, turning often, until chiles are blistered, and aromatic. Remove chiles from heat and allow to cool briefly. Once chiles have cooled enough to handle, remove stems and seeds, and tear chiles into 2-inch pieces. Place torn chiles in a medium bowl with 1 cup of boiling water and 2 cups of strained, reserved cooking liquid; allow to stand until chiles have softened, about 10 minutes." +
+        "\nMeanwhile, heat 2 tablespoons canola oil in the same saucepan over medium-high heat. Add onions and smashed garlic cloves; cook, stirring often, until onions and garlic have softened, about 5 minutes. Add tomato paste and cook, stirring often, for 1 minute. Add red wine and allow mixture to reduce until most of the liquid excep tfor about 1/4 cup has evaporated, stirring occasionally. Remove from heat." +
+        "\nRemove softened chiles from liquid, and strain liquid through a fine mesh sieve, reserving 1/2 cup of the strained liquid. Combine softened chiles, 1/2 cup reserved liquid, onion mixture, and ketchup in a blender; blend until smooth. Add unsalted butter and sherry vinegar to the mixture and process until smooth. If you want a spicier sauce, add cayenne pepper or hot sauce to taste." +
+        "\nPreheat a grill or grill pan to medium high (350 degrees F to 400 degrees F / 175 degrees C to 200 degrees C)." +
+        "\nPat brisket dry with paper towels and rub with remaining 2 tablespoons oil. Place on the preheated grill and grill until grill marks appear, the outside is slightly charred, and the brisket is heated through, about 5 minutes per side." +
+        "\nTransfer brisket to a cutting board, let stand for 5 minutes to rest, and slice thinly against the grain of the meat and serve hot with sauce." +
         "",
       content:
         "Perfectly tender, melt in your mouth brisket, with a gentle smokiness and a sauce that is full of ancho chili flavor and well balanced smoky, earthy, sweet, and spicy flavors.",
@@ -607,6 +613,7 @@ const starterMenu = [
     menuId: "643e66ac11f924aa553e6f80",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/starter/cap.webp",
     item: {
       title: "Chicken AI Pastor",
       summary: "Chicken AI Pastor",
@@ -738,6 +745,7 @@ const starterMenu = [
     menuId: "643e66ac11f924aa553e6f80",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/starter/rgf.webp",
     item: {
       title: "Roasted Grape Flatbread",
       summary: "Roasted Grape Flatbread",
@@ -841,6 +849,7 @@ const starterMenu = [
     menuId: "643e66ac11f924aa553e6f80",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/starter/cspp.webp",
     item: {
       title: "Chicken-Stuffed poblano peppers",
       summary: "Chicken-Stuffed poblano peppers",
@@ -974,6 +983,7 @@ const starterMenu = [
     menuId: "643e66ac11f924aa553e6f80",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/starter/bbf.webp",
     item: {
       title: "Baked Buffalo Wings",
       summary: "Baked Buffalo Wings",
@@ -1050,6 +1060,7 @@ const starterMenu = [
     menuId: "643e66ac11f924aa553e6f80",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/starter/afvs.webp",
     item: {
       title: "Air-Fryer Veggie Sticks",
       summary: "Air-Fryer Veggie Sticks",
@@ -1156,6 +1167,7 @@ const dessertMenu = [
     menuId: "643e66e411f924aa553e6f84",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/dessert/ttb.webp",
     item: {
       title: "TikTok Brownies",
       summary: "TikTok Brownies",
@@ -1221,6 +1233,7 @@ const dessertMenu = [
     menuId: "643e66e411f924aa553e6f84",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/dessert/pcc.webp",
     item: {
       title: "The Best Paleo Chocolate Cake with Paleo Chocolate Frosting",
       summary: "The Best Paleo Chocolate Cake with Paleo Chocolate Frosting",
@@ -1341,6 +1354,7 @@ const dessertMenu = [
     menuId: "643e66e411f924aa553e6f84",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/dessert/si.webp",
     item: {
       title: "Easy Strawberry Ice Cream",
       summary: "Easy Strawberry Ice Cream",
@@ -1402,7 +1416,10 @@ const dessertMenu = [
       ],
       nutrition: { fat: "23g", carbs: "34g", protein: "4g", calories: "354" },
       instructions:
-        "Gather all ingredients.Combine strawberries, milk, cream, sugar, vanilla, salt, and food coloring in a large bowl.Pour strawberry mixture into the freezer bowl of an ice cream maker; freeze according to the manufacturer's directions.Transfer to an airtight container and freeze until firm.",
+        "Gather all ingredients." +
+        "\nCombine strawberries, milk, cream, sugar, vanilla, salt, and food coloring in a large bowl." +
+        "\nPour strawberry mixture into the freezer bowl of an ice cream maker; freeze according to the manufacturer's directions." +
+        "\nTransfer to an air tight container and freeze until firm.",
       content:
         "This strawberry ice cream is super easy to make. This recipe doesn't use an egg-custard base but still tastes rich and creamy.",
     },
@@ -1411,6 +1428,7 @@ const dessertMenu = [
     menuId: "643e66e411f924aa553e6f84",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/dessert/bpud.webp",
     item: {
       title: "The Best Banana Pudding",
       summary: "The Best Banana Pudding",
@@ -1486,6 +1504,7 @@ const dessertMenu = [
     menuId: "643e66e411f924aa553e6f84",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/dessert/spf.webp",
     item: {
       title: "Spanish Flan",
       summary: "Spanish Flan",
@@ -1546,6 +1565,7 @@ const dessertMenu = [
     menuId: "643e66e411f924aa553e6f84",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/dessert/bbc.webp",
     item: {
       title: "Burnt Basque Cheesecake",
       summary: "Burnt Basque Cheesecake",
@@ -1628,6 +1648,7 @@ const dessertMenu = [
     menuId: "643e66e411f924aa553e6f84",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/dessert/orc.webp",
     item: {
       title: "Oatmeal Raisin Cookies",
       summary: "Oatmeal Raisin Cookies",
@@ -1733,6 +1754,7 @@ const soups = [
     menuId: "643e67663cac95a4fabe0f12",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/soup/nbf.webp",
     item: {
       title: "Noodle Bowl Formula",
       summary: "Noodle Bowl Formula",
@@ -1805,6 +1827,7 @@ const soups = [
     menuId: "643e67663cac95a4fabe0f12",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/soup/cts.webp",
     item: {
       title: "Chicken Tortilla Soup",
       summary: "Chicken Tortilla Soup",
@@ -1958,6 +1981,7 @@ const soups = [
     menuId: "643e67663cac95a4fabe0f12",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/soup/bbs.webp",
     item: {
       title: "Beef Barley Vegetable Soup",
       summary: "Beef Barley Vegetable Soup",
@@ -2074,6 +2098,7 @@ const soups = [
     menuId: "643e67663cac95a4fabe0f12",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/soup/cms.webp",
     item: {
       title: "Chicken Minestrone Soup",
       summary: "Chicken Minestrone Soup",
@@ -2221,6 +2246,7 @@ const soups = [
     menuId: "643e67663cac95a4fabe0f12",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/soup/pfs.webp",
     item: {
       title: "Pasta Fagioli",
       summary: "Pasta Fagioli",
@@ -2337,6 +2363,7 @@ const soups = [
     menuId: "643e67663cac95a4fabe0f12",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/soup/ces.webp",
     item: {
       title: "Chicken Enchilada Soup",
       summary: "Chicken Enchilada Soup",
@@ -2445,6 +2472,7 @@ const soups = [
     menuId: "643e67663cac95a4fabe0f12",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/soup/cioppino.webp",
     item: {
       title: "Cioppino",
       summary: "Cioppino",
@@ -2583,8 +2611,11 @@ const soups = [
       ],
       nutrition: { fat: "13g", carbs: "9g", protein: "35g", calories: "318" },
       instructions:
-        "Melt butter in a large stockpot over medium-low heat. Add onions, parsley, and garlic. Cook and stir until onions are softened, 3 to 4 minutes.\n" +
-        "Add tomatoes to the pot (break them into chunks as you add them). Stir in chicken broth, wine, water, bay leaves, basil, thyme, and oregano. Cover and simmer for 30 minutes.Stir in cod, shrimp, scallops, clams, mussels, and crabmeat. Bring to boil; lower heat, cover, and simmer until clams open up, 5 to 7 minutes. Ladle soup into bowls and serve.",
+        "Melt butter in a large stockpot over medium-low heat. Add onions, parsley, and garlic." +
+        " \nCook and stir until onions are softened, 3 to 4 minutes.\n" +
+        "Add tomatoes to the pot (break them into chunks as you add them)." +
+        "\nStir in chicken broth, wine, water, bay leaves, basil, thyme, and oregano. Cover and simmer for 30 minutes." +
+        "\nStir in cod, shrimp, scallops, clams, mussels, and crabmeat. Bring to boil; lower heat, cover, and simmer until clams open up, 5 to 7 minutes. Ladle soup into bowls and serve.",
       content:
         "This cioppino is a wonderful seafood stew! Serve with a loaf of warm, crusty bread for sopping up the delicious broth!",
     },
@@ -2593,6 +2624,7 @@ const soups = [
     menuId: "643e67663cac95a4fabe0f12",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/soup/egusi.webp",
     item: {
       title: "Egusi Soup",
       summary: "Egusi Soup",
@@ -2696,6 +2728,7 @@ const soups = [
     menuId: "643e67663cac95a4fabe0f12",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/soup/cramens.webp",
     item: {
       title: "Chicken Ramen Noodle Soup with Honey Sriracha Crackers",
       summary: "Chicken Ramen Noodle Soup with Honey Sriracha Crackers",
@@ -2831,6 +2864,7 @@ const drinks = [
     menuId: "643e67e33cac95a4fabe0f16",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/drink/perm.webp",
     item: {
       title: "The Perfect Margarita",
       summary: "The Perfect Margarita",
@@ -2912,6 +2946,7 @@ const drinks = [
     menuId: "643e67e33cac95a4fabe0f16",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/drink/strdaq.webp",
     item: {
       title: "Best Strawberry Daiquiri",
       summary: "Best Strawberry Daiquiri",
@@ -2984,6 +3019,7 @@ const drinks = [
     menuId: "643e67e33cac95a4fabe0f16",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/drink/dim.webp",
     item: {
       title: "Dirty Martini",
       summary: "Dirty Martini",
@@ -3036,6 +3072,7 @@ const drinks = [
     menuId: "643e67e33cac95a4fabe0f16",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/drink/jrp.webp",
     item: {
       title: "Jamaican Rum Punch",
       summary: "Jamaican Rum Punch",
@@ -3130,6 +3167,7 @@ const drinks = [
     menuId: "643e67e33cac95a4fabe0f16",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/drink/jcf.webp",
     item: {
       title: "Java Chip Frappe",
       summary: "Java Chip Frappe",
@@ -3195,6 +3233,7 @@ const drinks = [
     menuId: "643e67e33cac95a4fabe0f16",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/drink/idcl.webp",
     item: {
       title: "Iced Dirty Chai Latte",
       summary: "Iced Dirty Chai Latte",
@@ -3277,8 +3316,11 @@ const drinks = [
       ],
       nutrition: { fat: "1g", carbs: "30g", protein: "2g", calories: "254" },
       instructions:
-        "In a small saucepan over high heat, combine water, brown sugar, cinnamon, ginger, allspice, and cardamom. Bring to a boil, then turn off heat and add tea bags. Allow to steep for about 5 minutes. Remove tea bags and allow to cool completely.\n" +
-        "Strain tea mixture into 2 ice filled glasses, then add espresso shots. Pour Almond Breeze Extra Creamy Almondmilk, and Almond Breeze Vanilla Almondmilk Creamer into glasses.",
+        "In a small saucepan over high heat, combine water, brown sugar, cinnamon, ginger, allspice, and cardamom." +
+        "\nBring to a boil, then turn off heat and add tea bags. " +
+        "\nAllow to steep for about 5 minutes. Remove tea bags and allow to cool completely.\n" +
+        "Strain tea mixture into 2 ice filled glasses, then add espresso shots." +
+        "\nPour Almond Breeze Extra Creamy Almondmilk, and Almond Breeze Vanilla Almondmilk Creamer into glasses.",
       content:
         "The rich blend of spices in this chai latte make a wonderful aroma to pair with Almond Breeze Almondmilk and your favorite shots of espresso.",
     },
@@ -3288,6 +3330,7 @@ const drinks = [
     menuId: "643e67e33cac95a4fabe0f16",
     userId: "64228cc979dd8c02d4271d76",
     active: true,
+    imageUrl: "http://localhost:3000/items/drink/scaf.webp",
     item: {
       title: "Sparkling Cantaloupe Agua Fresca",
       summary: "Sparkling Cantaloupe Agua Fresca",
@@ -3342,7 +3385,8 @@ const drinks = [
       ],
       nutrition: { fat: "0g", carbs: "21g", protein: "1g", calories: "81" },
       instructions:
-        "Working in batches if needed, blend cantaloupe, water, lime juice, honey, and salt in a blender until smooth. Press through a sieve; discard solids. Add strained juice to a pitcher.\n" +
+        "Working in batches if needed, blend cantaloupe, water, lime juice, honey, and salt in a blender until smooth." +
+        "\nPress through a sieve; discard solids. Add strained juice to a pitcher.\n" +
         "Chill until ready to serve. Add club soda just before serving. Serve over ice, and garnish glasses with melon balls and lime zest twists.",
       content:
         "This refreshing agua fresca with cantaloupe and lime juice topped with club soda is perfect on a hot day.",

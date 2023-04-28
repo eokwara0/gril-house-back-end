@@ -9,6 +9,7 @@ export type IMenuItem = {
   userId: string;
   active: boolean;
   item: Item;
+  imageUrl: string;
 };
 
 /**
@@ -60,6 +61,14 @@ export class MenuItem implements IMenuItem {
     required: true,
   })
   item: ItemDocument; //
+
+  @IsString()
+  @Prop({
+    name: "image url",
+    required: false,
+    default: "",
+  })
+  imageUrl: string;
 
   // constructor
   constructor(menuId: string, active: boolean, item: ItemDocument) {

@@ -79,10 +79,27 @@ export default class MenuItemController {
     return this.menuItemService.getMenuByItemId(itemId);
   }
 
+  @Roles()
+  @Get("recommended")
+  @HttpCode(HttpStatus.OK)
+  async getRecommendedMenuItems(): Promise<MenuItem[]> {
+    return this.menuItemService.getRecommended();
+  }
+
   @Delete(":id")
   @Roles(ROLES.ADMIN)
   @HttpCode(HttpStatus.ACCEPTED)
   async delete(@Param("id") id: string): Promise<any> {
     return this.menuItemService.removeMenuItem(id);
+  }
+
+  @Post("update/:id")
+  @HttpCode(HttpStatus.ACCEPTED)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
+  async updateMenuById(
+    @Param("id") id: string,
+    @Body() changes: Record<any, any>
+  ): Promise<MenuItem> {
+    return this.menuItemService.updateMenuItemById(id, changes);
   }
 }

@@ -43,7 +43,6 @@ export class MenuItemService {
     return await this.menuItemModel.find({ active: true });
   }
 
-  // TODO ::: remove menu item
   async removeMenuItem(id: string): Promise<any> {
     const result = await this.menuItemModel.findByIdAndDelete(id, {});
     if (result === null) {
@@ -67,6 +66,10 @@ export class MenuItemService {
     return result;
   }
 
+  async getRecommended(): Promise<MenuItem[]> {
+    return await this.menuItemModel.aggregate([{ $sample: { size: 10 } }]);
+  }
+
   async getMenuByItemId(itemId: string): Promise<MenuItem> {
     try {
       const result = await this.menuItemModel.findById(itemId);
@@ -77,5 +80,14 @@ export class MenuItemService {
     } catch (error) {
       throw new HttpException("Invalid itemId", HttpStatus.BAD_REQUEST);
     }
+  }
+
+  async updateMenuItemById(
+    id: string,
+    newValue: Record<any, any>
+  ): Promise<MenuItem> {
+    return this.menuItemModel.findByIdAndUpdate({ _id: id }, newValue, {
+      returnDocument: "after",
+    });
   }
 }

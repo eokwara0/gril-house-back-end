@@ -42,6 +42,12 @@ export class MenuService {
     }
   }
 
+  async updateMenuById(id: string, newValue: Record<any, any>): Promise<Menu> {
+    return this.menuModel.findByIdAndUpdate({ _id: id }, newValue, {
+      returnDocument: "after",
+    });
+  }
+
   /**
    * Deletes menu from the menu list
    * @param title

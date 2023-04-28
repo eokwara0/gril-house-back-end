@@ -61,4 +61,14 @@ export class MenuController {
   async deleteMenu(@Param("title") title: string): Promise<Menu[]> {
     return this.menuService.deletMenu(title);
   }
+
+  @Post("update/:id")
+  @HttpCode(HttpStatus.ACCEPTED)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
+  async updateMenuById(
+    @Param("id") id: string,
+    @Body() changes: Record<any, any>
+  ): Promise<Menu> {
+    return this.menuService.updateMenuById(id, changes);
+  }
 }
