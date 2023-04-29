@@ -5,7 +5,7 @@ const mainMenuMeals = [
     active: true,
     imageUrl: "http://localhost:3000/items/main/smg.webp",
     item: {
-      title: "Santa Maria Grilled Tri-Tip Beef",
+      title: "Santa Maria Grilled Beef",
       summary: `Santa Maria tri-itp mariande of spices and herbs makes this recipe spectacular.`,
       cooking: true,
       price: 200,
@@ -198,7 +198,7 @@ const mainMenuMeals = [
     active: true,
     imageUrl: "http://localhost:3000/items/main/blbc.webp",
     item: {
-      title: "Baked Lemon Butter Chicken Thighs",
+      title: "Baked Lemon Butter Chicken",
       summary: "Baked lemon Butter Chicken Thighs tasty meal",
       cooking: true,
       price: 159,
@@ -851,7 +851,7 @@ const starterMenu = [
     active: true,
     imageUrl: "http://localhost:3000/items/starter/cspp.webp",
     item: {
-      title: "Chicken-Stuffed poblano peppers",
+      title: "Chicken-Stuffed poblano",
       summary: "Chicken-Stuffed poblano peppers",
       cooking: true,
       price: 125,
@@ -1235,7 +1235,7 @@ const dessertMenu = [
     active: true,
     imageUrl: "http://localhost:3000/items/dessert/pcc.webp",
     item: {
-      title: "The Best Paleo Chocolate Cake with Paleo Chocolate Frosting",
+      title: "Paleo Chocolate Cake",
       summary: "The Best Paleo Chocolate Cake with Paleo Chocolate Frosting",
       cooking: false,
       price: 60,
@@ -2730,7 +2730,7 @@ const soups = [
     active: true,
     imageUrl: "http://localhost:3000/items/soup/cramens.webp",
     item: {
-      title: "Chicken Ramen Noodle Soup with Honey Sriracha Crackers",
+      title: "Chicken Ramen Noodle Soup",
       summary: "Chicken Ramen Noodle Soup with Honey Sriracha Crackers",
       cooking: true,
       price: 78.99,
@@ -3332,7 +3332,7 @@ const drinks = [
     active: true,
     imageUrl: "http://localhost:3000/items/drink/scaf.webp",
     item: {
-      title: "Sparkling Cantaloupe Agua Fresca",
+      title: "Sparkling Cantaloupe Agua",
       summary: "Sparkling Cantaloupe Agua Fresca",
       cooking: false,
       price: 36.99,
@@ -3341,10 +3341,10 @@ const drinks = [
       prep: "15min",
       recipe: [
         {
-          title: "fresh cantaloupe cubes (6",
-          summary: "fresh cantaloupe cubes (6",
+          title: "fresh cantaloupe cubes",
+          summary: "fresh cantaloupe cubes",
           quantity: 2,
-          unit: "pounds",
+          unit: "6 pounds",
           instructions: "",
         },
         {
