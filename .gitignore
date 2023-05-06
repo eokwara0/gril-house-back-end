@@ -107,3 +107,6 @@ dist
 *file.json
 
 .vscode/
+
+## image files
+public/items/files
