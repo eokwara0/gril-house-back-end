@@ -6,9 +6,11 @@ import { MenuService } from "./services/menu.service";
 import { MenuController } from "./controllers/menu.controller";
 import { MenuItemService } from "./services/menu.item.service";
 import MenuItemController from "./controllers/menu.item.controller";
+import { MulterModule } from "@nestjs/platform-express";
 
 @Module({
   imports: [
+    MulterModule.register({ dest: "./public" }),
     MongooseModule.forFeature([
       {
         name: MenuItem.name,

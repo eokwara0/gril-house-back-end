@@ -63,6 +63,7 @@ export class MenuItemService {
       ],
       active: true,
     });
+    console.log(result);
     return result;
   }
 
@@ -87,6 +88,15 @@ export class MenuItemService {
     newValue: Record<any, any>
   ): Promise<MenuItem> {
     return this.menuItemModel.findByIdAndUpdate({ _id: id }, newValue, {
+      returnDocument: "after",
+    });
+  }
+
+  async replaceMenuItemById(id: string, value: MenuItem): Promise<any> {
+    // const result = await this.menuItemModel.findByIdAndUpdate(id, value);
+    // return result;
+    //
+    return this.menuItemModel.findOneAndReplace({ _id: id }, value, {
       returnDocument: "after",
     });
   }

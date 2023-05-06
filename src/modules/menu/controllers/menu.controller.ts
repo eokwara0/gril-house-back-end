@@ -71,4 +71,11 @@ export class MenuController {
   ): Promise<Menu> {
     return this.menuService.updateMenuById(id, changes);
   }
+
+  @Get("menu/:id")
+  @HttpCode(HttpStatus.OK)
+  @Roles()
+  async getMenuById(@Param("id") id: string): Promise<any> {
+    return this.menuService.getMenuById(id);
+  }
 }

@@ -60,4 +60,8 @@ export class MenuService {
     }
     throw new HttpException("Menu not found", HttpStatus.NOT_FOUND);
   }
+
+  async getMenuById(id: string): Promise<any> {
+    return await this.menuModel.findById(id);
+  }
 }
