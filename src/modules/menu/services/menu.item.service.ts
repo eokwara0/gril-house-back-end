@@ -18,6 +18,10 @@ export class MenuItemService {
     return this.menuItemModel.find({ active: true });
   }
 
+  async deleteAllItemsByMenuId(id: string): Promise<any> {
+    return await this.menuItemModel.deleteMany({ menuId: id });
+  }
+
   async getMenusItemByMenuId(menuId: string): Promise<MenuItem[]> {
     try {
       const result = await this.menuItemModel.find({

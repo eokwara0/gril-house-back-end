@@ -3,17 +3,26 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Menu, MenuDocument } from "../model/menu.model";
 import { Model, Query } from "mongoose";
 import { ObjectId } from "mongodb";
-
+import { existsSync, mkdir, mkdirSync, rm, rmdir } from "fs";
+import { MenuItemService } from "./menu.item.service";
 @Injectable()
 export class MenuService {
-  constructor(@InjectModel(Menu.name) private menuModel: Model<MenuDocument>) {}
+  constructor(
+    @InjectModel(Menu.name) private menuModel: Model<MenuDocument>,
+    private menuItemService: MenuItemService
+  ) {}
 
   /**
    * Create a menu
    */
   async createMenu(menu: Menu): Promise<MenuDocument> {
-    const _menu = new this.menuModel(menu);
-    return _menu.save();
+    if (!existsSync(`./public/items/${menu.title}`)) {
+      mkdirSync(`./public/items/${menu.title}`.toLowerCase());
+      const _menu = new this.menuModel(menu);
+      const doc = await _menu.save();
+      return doc;
+    }
+    throw new HttpException("Menu Already Exists", HttpStatus.BAD_REQUEST);
   }
 
   /**
@@ -48,20 +57,33 @@ export class MenuService {
     });
   }
 
-  /**
-   * Deletes menu from the menu list
-   * @param title
-   * @returns list of Menu
-   */
-  async deletMenu(title: string): Promise<any> {
-    const result = await this.menuModel.deleteOne({ _title: title });
-    if (result.deletedCount > 0) {
-      return this.menuModel.countDocuments();
-    }
-    throw new HttpException("Menu not found", HttpStatus.NOT_FOUND);
-  }
-
   async getMenuById(id: string): Promise<any> {
     return await this.menuModel.findById(id);
+  }
+
+  async deleteMenuById(id: string): Promise<any> {
+    const menu_ = await this.menuModel.findOne({ _id: id });
+
+    if (menu_ != null) {
+      const deletedItems = await this.menuItemService.deleteAllItemsByMenuId(
+        id
+      );
+      const result = await this.menuModel.findByIdAndDelete(id);
+      rm(
+        `./public/items/${menu_["_title"]}`.toLowerCase(),
+        { recursive: true, force: true },
+        (err) => {
+          if (err) {
+            throw new HttpException(
+              "An Internal Error Occurred",
+              HttpStatus.BAD_REQUEST
+            );
+          }
+        }
+      );
+      return result;
+    }
+
+    throw new HttpException("Menu does not exist", HttpStatus.BAD_REQUEST);
   }
 }

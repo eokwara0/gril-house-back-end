@@ -19,10 +19,7 @@ import { JwtAuthGuard } from "src/modules/authentication/guards/jwt.authenticati
 import { RolesGuard } from "src/modules/authentication/guards/roles.guard";
 import { Roles } from "src/modules/authentication/decorators/roles.decorator";
 import { ROLES } from "src/domain/interfaces/roles.enum";
-import {
-  FileFieldsInterceptor,
-  FileInterceptor,
-} from "@nestjs/platform-express";
+import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { extname } from "path";
 
@@ -38,7 +35,7 @@ export default class MenuItemController {
     return this.menuItemService.getMenuItems();
   }
 
-  @Post()
+  @Post("add")
   @Roles()
   @HttpCode(HttpStatus.OK)
   @UsePipes(
@@ -153,33 +150,6 @@ export default class MenuItemController {
     })
   )
   async uploadIcon(
-    @Param("menu") meunName: string,
-    @UploadedFile() file: Express.Multer.File
-  ): Promise<string> {
-    console.log("file", file);
-    return file.path;
-  }
-
-  @Post("upload/icon")
-  @HttpCode(HttpStatus.ACCEPTED)
-  @Roles(ROLES.ADMIN, ROLES.MANAGER)
-  @UseInterceptors(
-    FileInterceptor("file", {
-      storage: diskStorage({
-        destination: "./public/icons",
-        filename: (req, file, callback) => {
-          const uniqueSuffix =
-            Date.now() + "-" + Math.round(Math.random() * 1e9);
-          const ext = extname(file.originalname);
-          const newFilename = file.originalname.replace(ext, "");
-
-          const filename = `${newFilename}-${uniqueSuffix}${ext}`;
-          callback(null, filename);
-        },
-      }),
-    })
-  )
-  async uploadImage(
     @Param("menu") meunName: string,
     @UploadedFile() file: Express.Multer.File
   ): Promise<string> {

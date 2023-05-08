@@ -7,7 +7,9 @@ import {
   HttpStatus,
   Param,
   Post,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
   UsePipes,
   ValidationPipe,
 } from "@nestjs/common";
@@ -18,6 +20,9 @@ import { RolesGuard } from "src/modules/authentication/guards/roles.guard";
 import { Roles } from "src/modules/authentication/decorators/roles.decorator";
 import { ROLES } from "src/domain/interfaces/roles.enum";
 import { ObjectId } from "mongodb";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
+import { extname } from "path";
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller("menu")
@@ -56,11 +61,6 @@ export class MenuController {
   async getMenuId(@Param("title") title: string): Promise<ObjectId> {
     return this.menuService.getMenuId(title);
   }
-  @Delete(":title")
-  @Roles(ROLES.ADMIN, ROLES.MANAGER)
-  async deleteMenu(@Param("title") title: string): Promise<Menu[]> {
-    return this.menuService.deletMenu(title);
-  }
 
   @Post("update/:id")
   @HttpCode(HttpStatus.ACCEPTED)
@@ -77,5 +77,38 @@ export class MenuController {
   @Roles()
   async getMenuById(@Param("id") id: string): Promise<any> {
     return this.menuService.getMenuById(id);
+  }
+
+  @HttpCode(HttpStatus.ACCEPTED)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
+  @Delete("delete/:id")
+  async deleteMenuById(@Param("id") id: string): Promise<any> {
+    return this.menuService.deleteMenuById(id);
+  }
+
+  @Post("upload/icon")
+  @HttpCode(HttpStatus.ACCEPTED)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
+  @UseInterceptors(
+    FileInterceptor("file", {
+      storage: diskStorage({
+        destination: "./public/icons",
+        filename: (req, file, callback) => {
+          const uniqueSuffix =
+            Date.now() + "-" + Math.round(Math.random() * 1e9);
+          const ext = extname(file.originalname);
+          const newFilename = file.originalname.replace(ext, "");
+
+          const filename = `${newFilename}-${uniqueSuffix}${ext}`;
+          callback(null, filename);
+        },
+      }),
+    })
+  )
+  async uploadImage(
+    @UploadedFile() file: Express.Multer.File
+  ): Promise<string> {
+    console.log("file", file);
+    return file.path;
   }
 }

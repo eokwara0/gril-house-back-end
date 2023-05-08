@@ -51,7 +51,7 @@ export class Menu implements IMenu {
     name: "imageUrl",
     type: mongoose.Schema.Types.String,
     required: false,
-    default: "",
+    default: "http://localhost:3000/items/ph/hot-pot.png",
   })
   private _imageUrl: string;
 
