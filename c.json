@@ -1,0 +1,11 @@
+
+{
+    "_id" : "64228a5e79dd8c02d4271d73",
+    "UserId" : "64228a5e79dd8c02d4271d73",
+    "type" : "EAT-IN/TAKE-OUT",
+    "status" : "Processing/Finished/Closed",
+    "grandTotal" : 23434,
+    "items" : [{ "menuId" : "64228a5e79dd8c02d4271d73" , "quantity" : 2 , "price": 234 }],
+    "customerName" : { "name" : "Emmanuel" , "emai" : "okwara.ec@gmail.com"}
+
+}

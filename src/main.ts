@@ -1,11 +1,18 @@
-import { NestFactory } from "@nestjs/core";
+import { HttpAdapterHost, NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { AppModule } from "./app.module";
 import { join } from "path";
 import { NestExpressApplication } from "@nestjs/platform-express";
+import { AllExceptionsFilter } from "./domain/models/exception.filter";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  // Exception
+  const { httpAdapter } = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
+
+  // swagger
   const config = new DocumentBuilder()
     .addBearerAuth()
     .setTitle("Grill-house-backend")

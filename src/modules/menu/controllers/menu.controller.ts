@@ -30,7 +30,7 @@ export class MenuController {
   constructor(private menuService: MenuService) {}
 
   @Get()
-  @Roles(ROLES.ADMIN, ROLES.ADMIN)
+  @Roles()
   async getAll(): Promise<Menu[]> {
     return this.menuService.findAllMenu();
   }
