@@ -13,6 +13,7 @@ export enum OrderStatus {
   PREPARING = "PREPARING",
   READY = "READY",
   CANCELED = "CANCELED",
+  CLOSED = "CLOSED",
 }
 
 export enum OrderType {

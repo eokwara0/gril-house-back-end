@@ -9,6 +9,9 @@ export class OrderService {
     @InjectModel(Order.name) private orderModel: Model<OrderDocument>
   ) {}
 
+  async getAll(): Promise<OrderDocument[]> {
+    return await this.orderModel.find({});
+  }
   async create(order: Order): Promise<OrderDocument> {
     const order_ = new this.orderModel(order);
     return await order_.save();
@@ -18,8 +21,23 @@ export class OrderService {
     return await this.orderModel.findById(id);
   }
 
+  async getPreparingOrders(): Promise<OrderDocument[]> {
+    return await this.orderModel.find({ status: OrderStatus.PREPARING });
+  }
+
   async getOrdersByUserId(id: string): Promise<OrderDocument[]> {
-    return await this.orderModel.find({ userId: id });
+    return await this.orderModel.find({
+      $and: [
+        { userId: id },
+        {
+          $or: [
+            { status: OrderStatus.READY },
+            { status: OrderStatus.CANCELED },
+            { status: OrderStatus.PREPARING },
+          ],
+        },
+      ],
+    });
   }
 
   async getUnPreparedOrders(): Promise<OrderDocument[]> {
@@ -36,6 +54,13 @@ export class OrderService {
     return await this.orderModel.updateOne(
       { _id: id },
       { $set: { status: OrderStatus.CANCELED } }
+    );
+  }
+
+  async closeOrderById(id: string): Promise<any> {
+    return await this.orderModel.updateOne(
+      { _id: id },
+      { $set: { status: OrderStatus.CLOSED } }
     );
   }
 }
