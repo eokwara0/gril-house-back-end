@@ -1,9 +1,14 @@
+import { HttpException, HttpStatus } from "@nestjs/common";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString } from "class-validator";
 import mongoose, { type HydratedDocument } from "mongoose";
 import { ROLES } from "src/domain/interfaces/roles.enum";
 
+export enum userAccess {
+  ACTIVE = "ACTIVE",
+  REVOKED = "REVOKED",
+}
 // User Interface
 export type IUser = {
   role: ROLES;
@@ -12,6 +17,7 @@ export type IUser = {
   username: string;
   lastname: string;
   password: string;
+  access: userAccess;
   firstname: string;
 };
 
@@ -109,6 +115,28 @@ export class User implements IUser {
   @IsString()
   firstname: string;
 
+  @ApiProperty({
+    description: "access",
+  })
+  @Prop({
+    name: "access",
+    type: mongoose.Schema.Types.String,
+    required: true,
+    index: true,
+    validate: (value) => {
+      const values = Object.values(userAccess);
+
+      for (const x of values) {
+        if (x == value) {
+          return true;
+        }
+      }
+      throw new HttpException("Invalid Order Type", HttpStatus.BAD_REQUEST);
+    },
+  })
+  @IsString()
+  access: userAccess;
+
   // Constructor
   constructor(
     role: ROLES,
@@ -117,7 +145,8 @@ export class User implements IUser {
     username: string,
     lastname: string,
     password: string,
-    firstname: string
+    firstname: string,
+    access: userAccess
   ) {
     this.role = role;
     this.email = email;
@@ -126,62 +155,7 @@ export class User implements IUser {
     this.firstname = firstname;
     this.lastname = lastname;
     this.password = password;
-  }
-
-  getRole(): string {
-    return this.role;
-  }
-
-  setRole(role: ROLES): void {
-    this.role = role;
-  }
-
-  getEmail(): string {
-    return this.email;
-  }
-
-  setEmail(email: string): void {
-    this.email = email;
-  }
-
-  getMobile(): string {
-    return this.email;
-  }
-
-  setMobile(mobile: string): void {
-    this.mobile = mobile;
-  }
-
-  getUsername(): string {
-    return this.username;
-  }
-
-  setUserName(username: string): void {
-    this.username = username;
-  }
-
-  getFirstName(): string {
-    return this.firstname;
-  }
-
-  setFirstName(firstname: string): void {
-    this.firstname = firstname;
-  }
-
-  setPassword(password: string): void {
-    this.password = password;
-  }
-
-  getPassword(): string {
-    return this.password;
-  }
-
-  getLastName(): string {
-    return this.lastname;
-  }
-
-  setLastName(lastname: string): void {
-    this.lastname = lastname;
+    this.access = access;
   }
 }
 

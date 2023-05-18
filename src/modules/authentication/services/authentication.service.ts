@@ -8,7 +8,7 @@ import {
 } from "@nestjs/common";
 
 import { LoginJwtService, resetJwtService } from "./jwt.services";
-import { User } from "src/modules/users/user.models/users.shema";
+import { User, userAccess } from "src/modules/users/user.models/users.shema";
 import { UsersService } from "src/modules/users/services/users.service";
 import { MailService } from "./email.service";
 import { CACHE_MANAGER } from "@nestjs/cache-manager";
@@ -40,7 +40,12 @@ export class AuthenticationService {
     );
     const validPass: boolean = pass === user.password;
 
-    if (!user || !strongPass || !validPass) {
+    if (
+      !user ||
+      !strongPass ||
+      !validPass ||
+      user.access == userAccess.REVOKED
+    ) {
       throw new UnauthorizedException();
     }
     const result = await AuthenticationService.extractResult(user);
@@ -186,6 +191,7 @@ export class AuthenticationService {
       lastname: user.lastname,
       username: user.username,
       firstname: user.firstname,
+      access: user.access,
     };
   }
 }

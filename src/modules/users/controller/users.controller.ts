@@ -3,8 +3,11 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
+  Put,
   Query,
   UseGuards,
   UsePipes,
@@ -32,8 +35,8 @@ export class UsersController {
       forbidNonWhitelisted: true,
     })
   )
-  @Roles()
   @Get()
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
   async findAll(@Query() queries: Queries): Promise<User[]> {
     return this.userService.findAll(queries);
   }
@@ -55,18 +58,44 @@ export class UsersController {
 
   @Roles()
   @Get(":id")
-  @Roles()
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
   @ApiBearerAuth()
   async findById(@Param("id") id: string): Promise<User> {
     return this.userService.findUserById(id);
   }
 
+  @ApiBearerAuth()
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
+  @HttpCode(HttpStatus.ACCEPTED)
+  @Put("grant/:id")
+  async grantAccessById(@Param("id") id: string): Promise<any> {
+    return await this.userService.grantAccess(id);
+  }
+
+  @ApiBearerAuth()
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
+  @HttpCode(HttpStatus.ACCEPTED)
+  @Put("revoke/:id")
+  async revokeAccessById(@Param("id") id: string): Promise<any> {
+    return await this.userService.revokeAccess(id);
+  }
+
+  @ApiBearerAuth()
+  @Roles(ROLES.ADMIN, ROLES.MANAGER, ROLES.CHEF, ROLES.WAITER, ROLES.CASHIER)
+  @HttpCode(HttpStatus.ACCEPTED)
+  @Put("udpatePassword/:id")
+  async updateUserPassword(
+    @Param("id") id: string,
+    @Query("password") password: string
+  ): Promise<any> {
+    return await this.userService.changePassword(id, password);
+  }
+
+  // delete
   @Delete(":id")
   @ApiBearerAuth()
   @Roles(ROLES.ADMIN, ROLES.MANAGER)
   async deleteById(@Param("id") id: string): Promise<Record<string, unknown>> {
     return this.userService.deleteUserById(id);
   }
-
-  // TODO: add support for updating user password
 }

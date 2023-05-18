@@ -1,7 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { User, type UserDocument } from "../user.models/users.shema";
+import {
+  User,
+  userAccess,
+  type UserDocument,
+} from "../user.models/users.shema";
 import { Queries } from "../../../domain/interfaces/query.interface";
 
 @Injectable()
@@ -39,6 +43,24 @@ export class UsersService {
     const { upsertedId, upsertedCount, ..._result } = result;
 
     return _result;
+  }
+
+  async grantAccess(id: string): Promise<any> {
+    return await this.userModel.findByIdAndUpdate(id, {
+      $set: { access: userAccess.ACTIVE },
+    });
+  }
+
+  async revokeAccess(id: string): Promise<any> {
+    return await this.userModel.findByIdAndUpdate(id, {
+      $set: { access: userAccess.REVOKED },
+    });
+  }
+
+  async changePassword(id: string, password: string): Promise<any> {
+    return await this.userModel.findByIdAndUpdate(id, {
+      $set: { password: password },
+    });
   }
 
   /**
