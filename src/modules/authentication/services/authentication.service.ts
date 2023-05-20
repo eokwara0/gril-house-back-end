@@ -8,7 +8,11 @@ import {
 } from "@nestjs/common";
 
 import { LoginJwtService, resetJwtService } from "./jwt.services";
-import { User, userAccess } from "src/modules/users/user.models/users.shema";
+import {
+  User,
+  UserResult,
+  userAccess,
+} from "src/modules/users/user.models/users.shema";
 import { UsersService } from "src/modules/users/services/users.service";
 import { MailService } from "./email.service";
 import { CACHE_MANAGER } from "@nestjs/cache-manager";
@@ -48,7 +52,7 @@ export class AuthenticationService {
     ) {
       throw new UnauthorizedException();
     }
-    const result = await AuthenticationService.extractResult(user);
+    const result = AuthenticationService.extractResult(user);
     return result;
   }
 
@@ -181,9 +185,7 @@ export class AuthenticationService {
    * @param user
    * @returns Record<string, string>
    */
-  public static async extractResult(
-    user: User
-  ): Promise<Record<string, unknown>> {
+  public static extractResult(user: User): UserResult {
     return {
       _id: user.id,
       role: user.role,
@@ -192,6 +194,7 @@ export class AuthenticationService {
       username: user.username,
       firstname: user.firstname,
       access: user.access,
+      mobile: user.mobile,
     };
   }
 }

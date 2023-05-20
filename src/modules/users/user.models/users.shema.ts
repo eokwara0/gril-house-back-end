@@ -21,6 +21,17 @@ export type IUser = {
   firstname: string;
 };
 
+export type UserResult = {
+  _id: string;
+  role: ROLES;
+  email: string;
+  mobile: string;
+  username: string;
+  lastname: string;
+  access: userAccess;
+  firstname: string;
+};
+
 // User Interface concrete implementation
 @Schema({
   id: true,

@@ -18,9 +18,10 @@ import { Roles } from "../../authentication/decorators/roles.decorator";
 import { JwtAuthGuard } from "../../authentication/guards/jwt.authentication.guard";
 import { Queries } from "../../../domain/interfaces/query.interface";
 import { ROLES } from "../../../domain/interfaces/roles.enum";
-import { User } from "../user.models/users.shema";
+import { User, UserResult } from "../user.models/users.shema";
 import { UsersService } from "../services/users.service";
 import { RolesGuard } from "src/modules/authentication/guards/roles.guard";
+import { AuthenticationService } from "src/modules/authentication/services/authentication.service";
 
 @Controller("user")
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -37,8 +38,12 @@ export class UsersController {
   )
   @Get()
   @Roles(ROLES.ADMIN, ROLES.MANAGER)
-  async findAll(@Query() queries: Queries): Promise<User[]> {
-    return this.userService.findAll(queries);
+  async findAll(@Query() queries: Queries): Promise<UserResult[]> {
+    const users = await this.userService.findAll(queries);
+    const userResult = users.map((el) => {
+      return AuthenticationService.extractResult(el);
+    });
+    return userResult;
   }
 
   @Roles(ROLES.ADMIN, ROLES.MANAGER)
@@ -52,16 +57,18 @@ export class UsersController {
     })
   )
   @Post()
-  async addUser(@Body() user: User): Promise<User> {
-    return this.userService.createUser(user);
+  async addUser(@Body() user: User): Promise<UserResult> {
+    const user_: User = await this.userService.createUser(user);
+    return AuthenticationService.extractResult(user_);
   }
 
   @Roles()
   @Get(":id")
   @Roles(ROLES.ADMIN, ROLES.MANAGER)
   @ApiBearerAuth()
-  async findById(@Param("id") id: string): Promise<User> {
-    return this.userService.findUserById(id);
+  async findById(@Param("id") id: string): Promise<UserResult> {
+    const user: User = await this.userService.findUserById(id);
+    return AuthenticationService.extractResult(user);
   }
 
   @ApiBearerAuth()
@@ -83,7 +90,7 @@ export class UsersController {
   @ApiBearerAuth()
   @Roles(ROLES.ADMIN, ROLES.MANAGER, ROLES.CHEF, ROLES.WAITER, ROLES.CASHIER)
   @HttpCode(HttpStatus.ACCEPTED)
-  @Put("udpatePassword/:id")
+  @Put("change/password/:id")
   async updateUserPassword(
     @Param("id") id: string,
     @Query("password") password: string
