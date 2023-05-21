@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import {
@@ -58,6 +58,9 @@ export class UsersService {
   }
 
   async changePassword(id: string, password: string): Promise<any> {
+    if (password == undefined) {
+      throw new HttpException("Invalid Password", HttpStatus.BAD_REQUEST);
+    }
     return await this.userModel.findByIdAndUpdate(id, {
       $set: { password: password },
     });

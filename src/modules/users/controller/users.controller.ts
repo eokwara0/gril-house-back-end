@@ -46,6 +46,7 @@ export class UsersController {
     return userResult;
   }
 
+  @HttpCode(HttpStatus.ACCEPTED)
   @Roles(ROLES.ADMIN, ROLES.MANAGER)
   @ApiBearerAuth()
   @UsePipes(
@@ -93,7 +94,7 @@ export class UsersController {
   @Put("change/password/:id")
   async updateUserPassword(
     @Param("id") id: string,
-    @Query("password") password: string
+    @Body("password") password: string
   ): Promise<any> {
     return await this.userService.changePassword(id, password);
   }
