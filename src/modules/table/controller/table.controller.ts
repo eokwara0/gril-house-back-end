@@ -12,10 +12,10 @@ import {
 } from "@nestjs/common";
 import { TableService } from "../services/table.service";
 import { Table, TableDocument } from "../model/table.model";
-import { JwtAuthGuard } from "src/modules/authentication/guards/jwt.authentication.guard";
-import { RolesGuard } from "src/modules/authentication/guards/roles.guard";
-import { Roles } from "src/modules/authentication/decorators/roles.decorator";
-import { ROLES } from "src/domain/interfaces/roles.enum";
+import { JwtAuthGuard } from "../../authentication/guards/jwt.authentication.guard";
+import { RolesGuard } from "../../authentication/guards/roles.guard";
+import { Roles } from "../../authentication/decorators/roles.decorator";
+import { ROLES } from "../../../domain/interfaces/roles.enum";
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller("table")
@@ -39,8 +39,6 @@ export class TableController {
     @Param("id") id: string,
     @Body() options: Record<string, any>
   ): Promise<any> {
-    console.log(id);
-    console.log(options);
     return await this.tableService.updateTableReservationById(id, options);
   }
 

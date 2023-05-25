@@ -11,8 +11,6 @@ form.addEventListener("submit", async function (event) {
   // get jwt_token from url string
   const jwt = window.location.href.split("/")[5].split("?")[1];
 
-  console.log(jwt);
-  console.log(userId);
   // make a request to the server to change the user's password
   const response = await fetch(
     `http://localhost:3000/auth/password/${userId}?${jwt}newpassword=${formData.get(

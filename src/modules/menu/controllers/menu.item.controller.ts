@@ -15,10 +15,10 @@ import {
 } from "@nestjs/common";
 import { MenuItemService } from "../services/menu.item.service";
 import { MenuItem } from "../model/menu.item.model";
-import { JwtAuthGuard } from "src/modules/authentication/guards/jwt.authentication.guard";
-import { RolesGuard } from "src/modules/authentication/guards/roles.guard";
-import { Roles } from "src/modules/authentication/decorators/roles.decorator";
-import { ROLES } from "src/domain/interfaces/roles.enum";
+import { JwtAuthGuard } from "../../authentication/guards/jwt.authentication.guard";
+import { RolesGuard } from "../../authentication/guards/roles.guard";
+import { Roles } from "../../authentication/decorators/roles.decorator";
+import { ROLES } from "../../../domain/interfaces/roles.enum";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { extname } from "path";
@@ -72,7 +72,6 @@ export default class MenuItemController {
   async getItemsBySearch(
     @Param("regex", ValidationPipe) regex: string
   ): Promise<MenuItem[]> {
-    console.log(regex);
     return this.menuItemService.menuItemWordSearch(regex);
   }
 
@@ -153,7 +152,6 @@ export default class MenuItemController {
     @Param("menu") meunName: string,
     @UploadedFile() file: Express.Multer.File
   ): Promise<string> {
-    console.log("file", file);
     return file.path;
   }
 }

@@ -67,7 +67,6 @@ export class MenuItemService {
       ],
       active: true,
     });
-    console.log(result);
     return result;
   }
 

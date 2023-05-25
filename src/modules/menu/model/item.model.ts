@@ -112,6 +112,23 @@ export default class Item implements IItem {
     this.instructions = instructions;
     this.content = content;
   }
+
+  static empty(): Item {
+    return new Item(
+      "",
+      "",
+      "",
+      false,
+      234,
+      234,
+      "",
+      "",
+      [Recipe.empty()],
+      Nutrition.empty(),
+      "",
+      ""
+    );
+  }
 }
 
 export type ItemDocument = HydratedDocument<Item>;

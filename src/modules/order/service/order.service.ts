@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Order, OrderDocument, OrderStatus } from "../model/order.model";
 import { Model } from "mongoose";
@@ -13,8 +13,15 @@ export class OrderService {
     return await this.orderModel.find({});
   }
   async create(order: Order): Promise<OrderDocument> {
-    const order_ = new this.orderModel(order);
-    return await order_.save();
+    try {
+      const order_ = new this.orderModel(order);
+      const createdOrder = await order_.save();
+      return createdOrder;
+    } catch (err) {
+      throw new HttpException(err.message, HttpStatus.BAD_REQUEST, {
+        cause: err,
+      });
+    }
   }
 
   async getOrderById(id: string): Promise<OrderDocument> {

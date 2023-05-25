@@ -7,7 +7,6 @@ import { MenuModule } from "./modules/menu/menu.module";
 import { OrderModule } from "./modules/order/order.module";
 import { TableModule } from "./modules/table/table.module";
 import { BillingModule } from "./modules/billing/billing.module";
-import { ReportModule } from "./modules/report/report.module";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
 
@@ -30,7 +29,6 @@ import { join } from "path";
     OrderModule,
     TableModule,
     BillingModule,
-    ReportModule,
   ],
 })
 export class AppModule {}

@@ -60,7 +60,7 @@ export class MenuItem implements IMenuItem {
     unique: true,
     required: true,
   })
-  item: ItemDocument; //
+  item: Item; //
 
   @IsString()
   @Prop({
@@ -71,10 +71,14 @@ export class MenuItem implements IMenuItem {
   imageUrl: string;
 
   // constructor
-  constructor(menuId: string, active: boolean, item: ItemDocument) {
+  constructor(menuId: string, active: boolean, item: Item) {
     this.menuId = menuId;
     this.active = active;
     this.item = item;
+  }
+
+  static empty() {
+    return new MenuItem("1234", false, Item.empty());
   }
 }
 

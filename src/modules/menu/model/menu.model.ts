@@ -105,6 +105,10 @@ export class Menu implements IMenu {
   public set userId(value: string) {
     this._userId = value;
   }
+
+  static empty(): Menu {
+    return new Menu("", "", "", "23", "");
+  }
 }
 
 export type IMenu = {

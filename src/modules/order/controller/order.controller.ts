@@ -13,10 +13,10 @@ import {
 } from "@nestjs/common";
 import { OrderService } from "../service/order.service";
 import { Order, OrderDocument } from "../model/order.model";
-import { Roles } from "src/modules/authentication/decorators/roles.decorator";
-import { JwtAuthGuard } from "src/modules/authentication/guards/jwt.authentication.guard";
-import { RolesGuard } from "src/modules/authentication/guards/roles.guard";
-import { ROLES } from "src/domain/interfaces/roles.enum";
+import { Roles } from "../..//authentication/decorators/roles.decorator";
+import { JwtAuthGuard } from "../../authentication/guards/jwt.authentication.guard";
+import { RolesGuard } from "../../authentication/guards/roles.guard";
+import { ROLES } from "../../../domain/interfaces/roles.enum";
 
 @Controller("order")
 @UseGuards(JwtAuthGuard, RolesGuard)

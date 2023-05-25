@@ -15,10 +15,10 @@ import {
 } from "@nestjs/common";
 import { MenuService } from "../services/menu.service";
 import { Menu, MenuDocument } from "../model/menu.model";
-import { JwtAuthGuard } from "src/modules/authentication/guards/jwt.authentication.guard";
-import { RolesGuard } from "src/modules/authentication/guards/roles.guard";
-import { Roles } from "src/modules/authentication/decorators/roles.decorator";
-import { ROLES } from "src/domain/interfaces/roles.enum";
+import { JwtAuthGuard } from "../../authentication/guards/jwt.authentication.guard";
+import { RolesGuard } from "../../authentication/guards/roles.guard";
+import { Roles } from "../../authentication/decorators/roles.decorator";
+import { ROLES } from "../../../domain/interfaces/roles.enum";
 import { ObjectId } from "mongodb";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
@@ -108,7 +108,6 @@ export class MenuController {
   async uploadImage(
     @UploadedFile() file: Express.Multer.File
   ): Promise<string> {
-    console.log("file", file);
     return file.path;
   }
 }

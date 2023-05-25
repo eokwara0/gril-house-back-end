@@ -17,4 +17,8 @@ export default class Nutrition implements INutrition {
     this.protien = protein;
     this.calories = calories;
   }
+
+  static empty(): Nutrition {
+    return new Nutrition("", "", "", "");
+  }
 }

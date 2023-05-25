@@ -12,8 +12,8 @@ import {
   User,
   UserResult,
   userAccess,
-} from "src/modules/users/user.models/users.shema";
-import { UsersService } from "src/modules/users/services/users.service";
+} from "../../users/user.models/users.shema";
+import { UsersService } from "../../users/services/users.service";
 import { MailService } from "./email.service";
 import { CACHE_MANAGER } from "@nestjs/cache-manager";
 import { Cache } from "cache-manager";

@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString } from "class-validator";
 import mongoose, { type HydratedDocument } from "mongoose";
-import { ROLES } from "src/domain/interfaces/roles.enum";
+import { ROLES } from "../../../domain/interfaces/roles.enum";
 
 export enum userAccess {
   ACTIVE = "ACTIVE",

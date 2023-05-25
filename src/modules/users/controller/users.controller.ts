@@ -9,6 +9,7 @@ import {
   Post,
   Put,
   Query,
+  UseFilters,
   UseGuards,
   UsePipes,
   ValidationPipe,
@@ -20,8 +21,8 @@ import { Queries } from "../../../domain/interfaces/query.interface";
 import { ROLES } from "../../../domain/interfaces/roles.enum";
 import { User, UserResult } from "../user.models/users.shema";
 import { UsersService } from "../services/users.service";
-import { RolesGuard } from "src/modules/authentication/guards/roles.guard";
-import { AuthenticationService } from "src/modules/authentication/services/authentication.service";
+import { AuthenticationService } from "../../authentication/services/authentication.service";
+import { RolesGuard } from "../../authentication/guards/roles.guard";
 
 @Controller("user")
 @UseGuards(JwtAuthGuard, RolesGuard)

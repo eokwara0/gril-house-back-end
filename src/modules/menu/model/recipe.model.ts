@@ -67,6 +67,10 @@ export class Recipe implements IRecipe {
     this.title = title;
     this.summary = summary;
   }
+
+  static empty(): Recipe {
+    return new Recipe(2, "teaspoons", "", "", "");
+  }
 }
 
 export type RecipeDocument = HydratedDocument<Recipe>;
