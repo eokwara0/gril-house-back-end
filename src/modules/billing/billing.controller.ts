@@ -19,7 +19,7 @@ import { ROLES } from "../../domain/interfaces/roles.enum";
 export class BillingController {
   constructor(private billService: BillingService) {}
   @Post()
-  @Roles(ROLES.MANAGER, ROLES.ADMIN)
+  @Roles()
   @UsePipes(
     new ValidationPipe({
       transform: true,
@@ -33,7 +33,7 @@ export class BillingController {
   }
 
   @Get()
-  @Roles(ROLES.MANAGER, ROLES.ADMIN)
+  @Roles()
   async getBills(): Promise<BillDocument[]> {
     return this.billService.getBills();
   }

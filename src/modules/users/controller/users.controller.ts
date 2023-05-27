@@ -59,13 +59,15 @@ export class UsersController {
     })
   )
   @Post()
-  async addUser(@Body() user: User): Promise<UserResult> {
+  async addUser(@Body() user: User): Promise<any> {
+    console.log(user);
     const user_: User = await this.userService.createUser(user);
-    return AuthenticationService.extractResult(user_);
+    return user_;
   }
 
   @Roles()
   @Get(":id")
+  @HttpCode(HttpStatus.OK)
   @Roles(ROLES.ADMIN, ROLES.MANAGER)
   @ApiBearerAuth()
   async findById(@Param("id") id: string): Promise<UserResult> {
