@@ -14,13 +14,13 @@ export class Menu implements IMenu {
   id: string;
 
   @Prop({
-    name: "title",
+    name: "menu title",
     type: mongoose.Schema.Types.String,
     unique: true,
     required: true,
   })
   @IsString()
-  private _title: string;
+   title: string;
 
   @Prop({
     name: "summary",
@@ -28,7 +28,7 @@ export class Menu implements IMenu {
     required: true,
   })
   @IsString()
-  private _summary: string;
+   summary: string;
 
   @Prop({
     name: "content",
@@ -36,7 +36,7 @@ export class Menu implements IMenu {
     required: true,
   })
   @IsString()
-  private _content: string;
+   content: string;
 
   @Prop({
     name: "String",
@@ -44,7 +44,7 @@ export class Menu implements IMenu {
     required: true,
   })
   @IsString()
-  private _userId: string;
+   userId: string;
 
   @IsString()
   @Prop({
@@ -53,7 +53,7 @@ export class Menu implements IMenu {
     required: false,
     default: "http://192.168.0.252:3000/items/ph/hot-pot.png",
   })
-  private _imageUrl: string;
+   imageUrl: string;
 
   // constructor
   constructor(
@@ -70,41 +70,7 @@ export class Menu implements IMenu {
     this.imageUrl = imageUrl;
   }
 
-  public get imageUrl(): string {
-    return this._imageUrl;
-  }
-  public set imageUrl(value: string) {
-    this._imageUrl = value;
-  }
-
-  public get title(): string {
-    return this._title;
-  }
-  public set title(value: string) {
-    this._title = value;
-  }
-
-  public get summary(): string {
-    return this._summary;
-  }
-
-  public set summary(value: string) {
-    this._summary = value;
-  }
-
-  public get content(): string {
-    return this._content;
-  }
-  public set content(value: string) {
-    this._content = value;
-  }
-
-  public get userId(): string {
-    return this._userId;
-  }
-  public set userId(value: string) {
-    this._userId = value;
-  }
+  
 
   static empty(): Menu {
     return new Menu("", "", "", "23", "");

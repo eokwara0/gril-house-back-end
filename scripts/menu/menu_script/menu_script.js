@@ -6,12 +6,12 @@
 async function addMenus() {
 
     const userId = (await getUserId())['_id'].toString();
-    const menus = [
+    let  menus = [
         {
         "title" : "Desserts",
         "summary": "The Sweet things of the world",
         "content" : "Sweet Meals Ice,Creams , Cookies",
-        "userId" : userId,
+        "userId" :  userId,
         "imageUrl" : "http://192.168.0.252:3000/icons/dessert.png"
         },
         {
@@ -51,7 +51,7 @@ async function addMenus() {
 
 
     db.menus.insertMany(menus);
-    console.log(`${menus.length()} menus inserted`);
+    console.log(`${(await db.menus.countDocuments())} menus inserted`);
 }
 
 

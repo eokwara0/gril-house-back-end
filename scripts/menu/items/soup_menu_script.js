@@ -1,7 +1,13 @@
-import { getUserId } from "../menu_script/menu_script.js";
-import { getId } from "./main_menu_script.js";
 
-export async function addSoupItems() {
+
+
+async function getUserId() {
+  return await db.users.findOne({ username: 'codeX' });
+}
+async function getId( name ) {
+  return await db.menus.findOne({ title: name });
+}
+async function addSoupItems() {
     const id = (await getId('Soups'))['_id'].toString();
   const userId = (await getUserId())['_id'].toString();
 
@@ -1117,5 +1123,8 @@ export async function addSoupItems() {
       
     
     db.menuitems.insertMany(soups);
-    console.log(`${soups.length()} menuitems inserted`)
-  }
+    console.log(`${soups.length} menuitems inserted`)
+}
+  
+
+addSoupItems();
