@@ -15,8 +15,8 @@ const user = [
 
 
  function addUser(user) {
-    db.users.insertOne(user);
-    console.log(`User has been Added username => ${user.username} , password => ${user.password}`);
+    db.users.insertOne(user[0]);
+    console.log(`User has been Added username => ${user[0].username} , password => ${user[0].password}`);
 }
 
-addUser();
+addUser(user);

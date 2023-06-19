@@ -1,7 +1,11 @@
-import { getUserId } from "../menu_script/menu_script.js";
-import { getId } from "./main_menu_script.js";
 
-export async function addDrinkMenuItems() {
+async function getUserId() {
+  return await db.users.findOne({ username: 'codeX' });
+}
+async function getId( name ) {
+  return await db.menus.findOne({ title: name });
+}
+async function addDrinkMenuItems() {
     const id = (await getId('Drinks'))['_id'].toString();
     const userId = (await getUserId())['_id'].toString();
 
@@ -541,5 +545,7 @@ export async function addDrinkMenuItems() {
         },
       ];
     db.menuitems.insertMany(drinks);
-    console.log(`${drinks.length()} menuitems inserted`);
-  }
+    console.log(`${drinks.length} menuitems inserted`);
+}
+
+addDrinkMenuItems();

@@ -1,7 +1,11 @@
-import { getUserId } from "../menu_script/menu_script.js";
-import { getId } from "./main_menu_script.js";
+async function getUserId() {
+  return await db.users.findOne({ username: 'codeX' });
+}
+async function getId( name ) {
+  return await db.menus.findOne({ title: name });
+}
 
-export async function addDessertMenuItems() {
+async function addDessertMenuItems() {
     const id = (await getId('Desserts'))['_id'].toString();
     const userId = (await getUserId())['_id'].toString();
 
@@ -594,14 +598,7 @@ const dessertMenu = [
   ];
   
     db.menuitems.insertMany(dessertMenu);
-    console.log(`${dessertMenu.length()} menuitems inserted`);
+    console.log(`${dessertMenu.length} menuitems inserted`);
 }
-  
 
-// export async function addDessertMenuItems() {
-//     id = (await getId('Starters'))['_id'].toString();
-
-    
-//     db.menuitems.insertMany(starterMenu);
-//     console.log(`${starterMenu.length()} menuitems inserted`)
-//   }
+addDessertMenuItems();
